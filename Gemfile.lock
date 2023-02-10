@@ -62,6 +62,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -173,7 +174,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -208,6 +208,7 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  bcrypt (~> 3.1.8)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
@@ -218,14 +219,13 @@ DEPENDENCIES
   rails (~> 6.1.7, >= 6.1.7.2)
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
-  spring
   sqlite3 (~> 1.4)
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers
 
 RUBY VERSION
-   ruby 3.0.5p211
+   ruby 3.0.5p0
 
 BUNDLED WITH
    2.4.6
