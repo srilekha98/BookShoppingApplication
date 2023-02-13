@@ -1,8 +1,17 @@
+<p id="notice"><%= notice %></p>
+
 <% if current_user %>
-  Logged in as <%= current_user.email %>.
-  <%= link_to "Log Out", logout_path %>
+  Logged in as <%= current_user.name %>
+  <table>
+    <thead>
+    <tr>
+      <th><%= link_to "My Profile", user_path(current_user.id) %> | </th>
+      <th><%= link_to "All Books", books_path %> | </th>
+      <th><%= link_to "Log Out", logout_path %> | </th>
+    </tr>
+    </thead>
+  </table>
 <% else %>
   <%= link_to "Sign Up", signup_path %> or
   <%= link_to "Log In", login_path %>
   <% end %>
-<p id="notice"><%= notice %></p>
