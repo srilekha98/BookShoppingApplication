@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h2>Books</h2>
+<%= form_tag books_path, method: :get do %>
+  <%= label_tag :filter_by_author%>
+  <%= select_tag :author, options_for_select(Book.pluck(:author).uniq), include_blank: true %>
+  <%= submit_tag "Filter" %>
+<% end %>
 
 <table>
   <thead>
