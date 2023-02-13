@@ -7,7 +7,10 @@
     <tr>
       <th><%= link_to "My Profile", user_path(current_user.id) %> | </th>
       <th><%= link_to "All Books", books_path %> | </th>
+      <th><%= link_to "My Reviews", review_path(current_user.id) %> | </th>
+      <th><%= link_to "My Shopping History", transaction_path(current_user.id) %> | </th>
       <th><%= link_to "Log Out", logout_path %> | </th>
+
     </tr>
     </thead>
   </table>

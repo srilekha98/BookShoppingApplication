@@ -3,7 +3,11 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    @books = if params[:author].present?
+               Book.by_author(params[:author])
+             else
+               Book.all
+             end
   end
 
   # GET /books/1 or /books/1.json
@@ -67,4 +71,5 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:name, :author, :publisher, :price, :stock)
     end
+
 end

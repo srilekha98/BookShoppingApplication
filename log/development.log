@@ -5330,3 +5330,1228 @@ Processing by HomeController#index as HTML
 Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.0ms | Allocations: 2600)
 
 
+Started GET "/" for 127.0.0.1 at 2023-02-13 15:45:25 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 2016)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | Allocations: 2277)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms | Allocations: 6878)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <p id="notice"><%= notice %></p>
+
+<% if current_user %>
+  Logged in as <%= current_user.name %>
+  <table>
+    <thead>
+    <tr>
+      <th><%= link_to "My Profile", user_path(current_user.id) %> | </th>
+      <th><%= link_to "All Books", books_path %> | </th>
+      <th><%= link_to "Log Out", logout_path %> | </th>
+    </tr>
+    </thead>
+  </table>
+<% else if admin_user %>
+  <%= link_to "Sign Up", signup_path %> or
+  <%= link_to "Log In", login_path %>
+  <% end %>
+):
+1:    <p id="notice"><%= notice %></p>
+2:    
+3:    <% if current_user %>
+4:      Logged in as <%= current_user.name %>
+5:      <table>
+6:        <thead>
+7:        <tr>
+8:          <th><%= link_to "My Profile", user_path(current_user.id) %> | </th>
+9:          <th><%= link_to "All Books", books_path %> | </th>
+10:          <th><%= link_to "Log Out", logout_path %> | </th>
+11:        </tr>
+12:        </thead>
+13:      </table>
+14:    <% else if admin_user %>
+15:      <%= link_to "Sign Up", signup_path %> or
+16:      <%= link_to "Log In", login_path %>
+17:      <% end %>
+  
+app/views/home/index.html.erb:19: syntax error, unexpected end-of-input, expecting `end'
+app/views/home/index.html.erb:19: syntax error, unexpected end-of-input, expecting `end'
+app/views/home/index.html.erb:19: syntax error, unexpected end-of-input, expecting `end'
+app/views/home/index.html.erb:19: syntax error, unexpected end-of-input, expecting `end'
+app/views/home/index.html.erb:19: syntax error, unexpected end-of-input, expecting `end'
+app/views/home/index.html.erb:19: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/" for 127.0.0.1 at 2023-02-13 15:45:47 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 13.3ms | Allocations: 10325)
+  Rendered layout layouts/application.html.erb (Duration: 24.0ms | Allocations: 17054)
+Completed 200 OK in 27ms (Views: 25.0ms | ActiveRecord: 0.7ms | Allocations: 18318)
+
+
+Started GET "/logout" for 127.0.0.1 at 2023-02-13 15:45:48 -0500
+  
+SyntaxError (/Users/sankettangade/Documents/Spring 23/OODD/Book-Shopping-Application/app/controllers/sessions_controller.rb:30: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/sessions_controller.rb:30: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/sessions_controller.rb:30: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/sessions_controller.rb:30: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/" for 127.0.0.1 at 2023-02-13 15:46:23 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 9087)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | Allocations: 11278)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.6ms | Allocations: 11952)
+
+
+Started GET "/logout" for 127.0.0.1 at 2023-02-13 15:46:24 -0500
+Processing by SessionsController#destroy as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms | Allocations: 1164)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 15:46:24 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 275)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 2397)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 2764)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-13 15:46:25 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1027)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | Allocations: 3187)
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.0ms | Allocations: 4198)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-13 15:46:42 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 743)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 2904)
+Completed 200 OK in 3ms (Views: 2.7ms | Allocations: 3576)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2023-02-13 15:46:46 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "username"=>"admin", "password"=>"[FILTERED]", "commit"=>"Login"}
+Completed 500 Internal Server Error in 2ms (Allocations: 1188)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:7:in `create'
+Started GET "/" for 127.0.0.1 at 2023-02-13 15:56:09 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1265)
+  Rendered layout layouts/application.html.erb (Duration: 15.9ms | Allocations: 10274)
+Completed 200 OK in 22ms (Views: 17.8ms | ActiveRecord: 0.0ms | Allocations: 14884)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-13 15:56:11 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1029)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 3189)
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.0ms | Allocations: 4309)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2023-02-13 15:56:15 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "username"=>"admin", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 506)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 2613)
+Completed 200 OK in 23ms (Views: 5.6ms | ActiveRecord: 1.6ms | Allocations: 8156)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-13 15:57:09 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.9ms | Allocations: 966)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 3273)
+Completed 200 OK in 19ms (Views: 15.6ms | ActiveRecord: 0.0ms | Allocations: 4525)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-13 15:57:10 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 573)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 2567)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 2911)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 15:57:11 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 21.0ms | Allocations: 4231)
+  Rendered layout layouts/application.html.erb (Duration: 21.4ms | Allocations: 4318)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.0ms | Allocations: 5250)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"destroy", :controller=>"admin_sessions"}, missing required keys: [:id]
+Did you mean?  admin_session_url
+               admin_sessions_url
+               admin_sessions_path
+               new_admin_session_url):
+    14: <% else %>
+    15:   <%= link_to "Sign Up", signup_path %> or
+    16:   <%= link_to "Log In", login_path %>
+    17:   <%= link_to "Admin Login", admin_session_path %>
+    18:   <% end %>
+  
+app/views/home/index.html.erb:17
+Started GET "/login" for 127.0.0.1 at 2023-02-13 15:57:12 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 665)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 2770)
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.0ms | Allocations: 3143)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-13 16:08:26 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.4ms | Allocations: 966)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 3273)
+Completed 200 OK in 22ms (Views: 18.9ms | Allocations: 4487)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:08:43 -0500
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 2856)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 3115)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms | Allocations: 7425)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"destroy", :controller=>"admin_sessions"}, missing required keys: [:id]
+Did you mean?  admin_session_url
+               admin_sessions_url
+               admin_sessions_path
+               new_admin_session_url):
+    13:   </table>
+    14: <% else %>
+    15:   <%= link_to "Sign Up", signup_path %> or
+    16:   <%= link_to "Log In", admin_session_path %>
+    17:   <%= link_to "Admin Login", login_path %>
+    18:   <% end %>
+  
+app/views/home/index.html.erb:16
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:08:43 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1432)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 1505)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 1842)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"destroy", :controller=>"admin_sessions"}, missing required keys: [:id]
+Did you mean?  admin_session_url
+               admin_sessions_url
+               admin_sessions_path
+               new_admin_session_url):
+    13:   </table>
+    14: <% else %>
+    15:   <%= link_to "Sign Up", signup_path %> or
+    16:   <%= link_to "Log In", admin_session_path %>
+    17:   <%= link_to "Admin Login", login_path %>
+    18:   <% end %>
+  
+app/views/home/index.html.erb:16
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:09:33 -0500
+  
+ArgumentError (Invalid route name, already in use: 'admin_sessions' 
+You may have defined two routes with the same name using the `:as` option, or you may be overriding a route already defined by a resource with the same naming. For the latter, you can restrict the routes created with `resources` as explained here: 
+https://guides.rubyonrails.org/routing.html#restricting-the-routes-created):
+  
+config/routes.rb:13:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:09:46 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1737)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 1816)
+Completed 500 Internal Server Error in 3ms (Allocations: 3138)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"destroy", :controller=>"admin_sessions"}, missing required keys: [:id]
+Did you mean?  admin_session_url
+               admin_sessions_url
+               admin_sessions_path
+               new_admin_session_url):
+    14: <% else %>
+    15:   <%= link_to "Sign Up", signup_path %> or
+    16:   <%= link_to "Log In", login_path %>
+    17:   <%= link_to "Admin Login", admin_session_path %>
+    18:   <% end %>
+  
+app/views/home/index.html.erb:17
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:09:47 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1376)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 1448)
+Completed 500 Internal Server Error in 4ms (Allocations: 1753)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"destroy", :controller=>"admin_sessions"}, missing required keys: [:id]
+Did you mean?  admin_session_url
+               admin_sessions_url
+               admin_sessions_path
+               new_admin_session_url):
+    14: <% else %>
+    15:   <%= link_to "Sign Up", signup_path %> or
+    16:   <%= link_to "Log In", login_path %>
+    17:   <%= link_to "Admin Login", admin_session_path %>
+    18:   <% end %>
+  
+app/views/home/index.html.erb:17
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:13:00 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 11.3ms | Allocations: 2110)
+  Rendered layout layouts/application.html.erb (Duration: 29.9ms | Allocations: 10451)
+Completed 200 OK in 48ms (Views: 44.9ms | ActiveRecord: 0.0ms | Allocations: 14865)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:18:17 -0500
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1473)
+  Rendered layout layouts/application.html.erb (Duration: 15.9ms | Allocations: 9991)
+Completed 200 OK in 25ms (Views: 21.1ms | ActiveRecord: 0.0ms | Allocations: 14661)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-13 16:18:19 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1029)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | Allocations: 3189)
+Completed 200 OK in 12ms (Views: 10.3ms | ActiveRecord: 0.0ms | Allocations: 4309)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2023-02-13 16:18:22 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "username"=>"user1", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "user1"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 282ms (ActiveRecord: 1.3ms | Allocations: 10111)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:18:23 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1193)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 3316)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.1ms | Allocations: 3689)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:18:24 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:8
+  Rendered books/index.html.erb within layouts/application (Duration: 10.7ms | Allocations: 5256)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 5344)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 1.0ms | Allocations: 7219)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    22:   </thead>
+    23: 
+    24:   <tbody>
+    25:     <% @books.each do |book| %>
+    26:       <tr>
+    27:         <td><%= book.name %></td>
+    28:         <td><%= book.author %></td>
+  
+app/views/books/index.html.erb:25
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:18:46 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  Rendered books/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1782)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 1860)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.3ms | Allocations: 3802)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    15:   </thead>
+    16: 
+    17:   <tbody>
+    18:     <% @books.each do |book| %>
+    19:       <tr>
+    20:         <td><%= book.name %></td>
+    21:         <td><%= book.author %></td>
+  
+app/views/books/index.html.erb:18
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:19:21 -0500
+Processing by BooksController#index as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:18
+  Rendered books/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 4848)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | Allocations: 7208)
+Completed 200 OK in 16ms (Views: 5.9ms | ActiveRecord: 1.0ms | Allocations: 17922)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:19:47 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 10.7ms | Allocations: 2452)
+  Rendered layout layouts/application.html.erb (Duration: 15.5ms | Allocations: 4781)
+Completed 200 OK in 28ms (Views: 18.8ms | ActiveRecord: 1.1ms | Allocations: 6834)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:19:50 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.2ms | Allocations: 4273)
+
+
+  
+NoMethodError (undefined method `by_author' for Book:Class):
+  
+app/controllers/books_controller.rb:7:in `index'
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:20:11 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 1.1ms | Allocations: 13494)
+
+
+  
+NoMethodError (undefined method `by_author' for Book:Class):
+  
+app/controllers/books_controller.rb:7:in `index'
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:20:12 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 21.0ms | Allocations: 5806)
+  Rendered layout layouts/application.html.erb (Duration: 23.8ms | Allocations: 7989)
+Completed 200 OK in 29ms (Views: 23.6ms | ActiveRecord: 1.9ms | Allocations: 9519)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:20:13 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 17.5ms | Allocations: 1741)
+  Rendered layout layouts/application.html.erb (Duration: 21.0ms | Allocations: 3747)
+Completed 200 OK in 28ms (Views: 22.4ms | ActiveRecord: 0.9ms | Allocations: 4882)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:20:14 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.4ms | Allocations: 4197)
+
+
+  
+NoMethodError (undefined method `by_author' for Book:Class):
+  
+app/controllers/books_controller.rb:7:in `index'
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:20:29 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.6ms | Allocations: 13513)
+
+
+  
+NoMethodError (undefined method `by_author' for Book:Class):
+  
+app/controllers/books_controller.rb:7:in `index'
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:20:30 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 14.1ms | Allocations: 5798)
+  Rendered layout layouts/application.html.erb (Duration: 17.8ms | Allocations: 7981)
+Completed 200 OK in 26ms (Views: 18.0ms | ActiveRecord: 1.7ms | Allocations: 9513)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:20:31 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.1ms | Allocations: 4261)
+
+
+  
+NoMethodError (undefined method `by_author' for Book:Class):
+  
+app/controllers/books_controller.rb:7:in `index'
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:20:46 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.6ms | Allocations: 10692)
+
+
+  
+NoMethodError (undefined method `by_author' for BooksController:Class):
+  
+app/controllers/books_controller.rb:7:in `index'
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:20:48 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 14.8ms | Allocations: 5797)
+  Rendered layout layouts/application.html.erb (Duration: 20.0ms | Allocations: 7980)
+Completed 200 OK in 29ms (Views: 20.0ms | ActiveRecord: 2.1ms | Allocations: 10670)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:20:52 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1741)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 3747)
+Completed 200 OK in 12ms (Views: 8.8ms | ActiveRecord: 0.4ms | Allocations: 4883)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:21:21 -0500
+Processing by BooksController#index as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 5739)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 7926)
+Completed 200 OK in 16ms (Views: 5.5ms | ActiveRecord: 1.0ms | Allocations: 18628)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:21:24 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.2ms | Allocations: 2728)
+
+
+  
+NoMethodError (undefined method `by_author' for BooksController:Class):
+  
+app/controllers/books_controller.rb:7:in `index'
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:21:27 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 5.4ms | Allocations: 1741)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 3752)
+Completed 200 OK in 15ms (Views: 11.7ms | ActiveRecord: 0.4ms | Allocations: 4824)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:21:27 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1403)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | Allocations: 3589)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.5ms | Allocations: 4681)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:21:34 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 24.5ms | Allocations: 9046)
+  Rendered layout layouts/application.html.erb (Duration: 30.5ms | Allocations: 11232)
+Completed 200 OK in 42ms (Views: 41.2ms | ActiveRecord: 0.9ms | Allocations: 11902)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:21:36 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 16.2ms | Allocations: 5758)
+  Rendered layout layouts/application.html.erb (Duration: 19.8ms | Allocations: 7941)
+Completed 200 OK in 28ms (Views: 19.7ms | ActiveRecord: 2.0ms | Allocations: 10827)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:21:38 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr. Anonymous"]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 1812)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 3818)
+Completed 200 OK in 16ms (Views: 11.6ms | ActiveRecord: 0.8ms | Allocations: 5008)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:23:35 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  Rendered books/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1460)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 1539)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.5ms | Allocations: 3508)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <p id="notice"><%= notice %></p>
+
+<h2>Books</h2>
+<%= form_tag books_path, method: :get do %>
+  <%= label_tag :author %>
+  <%= text_field_tag :author %>
+  <%= submit_tag "Search" %>
+<% end %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Publisher</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.name %></td>
+        <td><%= book.author %></td>
+        <td><%= book.publisher %></td>
+        <td><%= book.price %></td>
+        <td><%= book.stock %></td>
+        <td><%= link_to 'Show', book %></td>
+        <%if !current_user %>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+          <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%else %>
+        <td></td>
+        <%end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Book', new_book_path %>
+
+):
+1:    <p id="notice"><%= notice %></p>
+2:    
+3:    <h2>Books</h2>
+4:    <%= form_tag books_path, method: :get do %>
+5:      <%= label_tag :author %>
+6:      <%= text_field_tag :author %>
+7:      <%= submit_tag "Search" %>
+8:    <% end %>
+9:    <% end %>
+10:    
+11:    <table>
+12:      <thead>
+13:        <tr>
+14:          <th>Name</th>
+15:          <th>Author</th>
+16:          <th>Publisher</th>
+17:          <th>Price</th>
+18:          <th>Stock</th>
+19:          <th colspan="3"></th>
+20:        </tr>
+21:      </thead>
+22:    
+23:      <tbody>
+24:        <% @books.each do |book| %>
+25:          <tr>
+26:            <td><%= book.name %></td>
+27:            <td><%= book.author %></td>
+28:            <td><%= book.publisher %></td>
+29:            <td><%= book.price %></td>
+30:            <td><%= book.stock %></td>
+31:            <td><%= link_to 'Show', book %></td>
+32:            <%if !current_user %>
+33:            <td><%= link_to 'Edit', edit_book_path(book) %></td>
+34:              <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+35:              <%else %>
+36:            <td></td>
+37:            <%end %>
+38:          </tr>
+39:        <% end %>
+40:      </tbody>
+41:    </table>
+42:    
+43:    <br>
+44:    
+45:    <%= link_to 'New Book', new_book_path %>
+  
+app/views/books/index.html.erb:48: syntax error, unexpected `end', expecting end-of-input
+app/views/books/index.html.erb:48: syntax error, unexpected `end', expecting end-of-input
+app/views/books/index.html.erb:48: syntax error, unexpected `end', expecting end-of-input
+app/views/books/index.html.erb:48: syntax error, unexpected `end', expecting end-of-input
+app/views/books/index.html.erb:48: syntax error, unexpected `end', expecting end-of-input
+app/views/books/index.html.erb:48: syntax error, unexpected `end', expecting end-of-input
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:23:43 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr. Anonymous"]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1705)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 4041)
+Completed 200 OK in 16ms (Views: 9.2ms | ActiveRecord: 0.4ms | Allocations: 6155)
+
+
+Started GET "/books?author=Mr.&commit=Search" for 127.0.0.1 at 2023-02-13 16:23:47 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr.", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr."]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 964)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 2975)
+Completed 200 OK in 15ms (Views: 9.6ms | ActiveRecord: 0.4ms | Allocations: 4148)
+
+
+Started GET "/books?author=Mr.Anonymous&commit=Search" for 127.0.0.1 at 2023-02-13 16:23:52 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr.Anonymous", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr.Anonymous"]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 964)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 2970)
+Completed 200 OK in 15ms (Views: 10.4ms | ActiveRecord: 0.5ms | Allocations: 4052)
+
+
+Started GET "/books?author=&commit=Search" for 127.0.0.1 at 2023-02-13 16:23:53 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1011)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 3017)
+Completed 200 OK in 14ms (Views: 10.2ms | ActiveRecord: 0.5ms | Allocations: 4070)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Search" for 127.0.0.1 at 2023-02-13 16:24:00 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr. Anonymous"]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1027)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 3033)
+Completed 200 OK in 13ms (Views: 10.2ms | ActiveRecord: 0.4ms | Allocations: 4115)
+
+
+Started GET "/books?author=&commit=Search" for 127.0.0.1 at 2023-02-13 16:24:12 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"", "commit"=>"Search"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 1011)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | Allocations: 3017)
+Completed 200 OK in 20ms (Views: 11.8ms | ActiveRecord: 0.8ms | Allocations: 4069)
+
+
+Started GET "/books?author=&commit=Search" for 127.0.0.1 at 2023-02-13 16:24:50 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 5.9ms | Allocations: 2450)
+  Rendered layout layouts/application.html.erb (Duration: 16.3ms | Allocations: 4785)
+Completed 200 OK in 27ms (Views: 20.3ms | ActiveRecord: 0.5ms | Allocations: 6724)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:24:56 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr. Anonymous"]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 7.0ms | Allocations: 1796)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 3807)
+Completed 200 OK in 20ms (Views: 12.2ms | ActiveRecord: 0.9ms | Allocations: 4986)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:27:33 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr. Anonymous"]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 9.7ms | Allocations: 2490)
+  Rendered layout layouts/application.html.erb (Duration: 15.0ms | Allocations: 4824)
+Completed 200 OK in 28ms (Views: 19.4ms | ActiveRecord: 0.9ms | Allocations: 6795)
+
+
+Started GET "/books?author=&commit=Search" for 127.0.0.1 at 2023-02-13 16:27:36 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1765)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 3771)
+Completed 200 OK in 13ms (Views: 10.1ms | ActiveRecord: 0.4ms | Allocations: 4892)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Search" for 127.0.0.1 at 2023-02-13 16:27:36 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Search"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr. Anonymous"]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1781)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 3787)
+Completed 200 OK in 13ms (Views: 10.1ms | ActiveRecord: 0.4ms | Allocations: 4884)
+
+
+Started GET "/books?author=&commit=Search" for 127.0.0.1 at 2023-02-13 16:27:37 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"", "commit"=>"Search"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1765)
+  Rendered layout layouts/application.html.erb (Duration: 9.5ms | Allocations: 3771)
+Completed 200 OK in 13ms (Views: 10.2ms | ActiveRecord: 0.4ms | Allocations: 4823)
+
+
+Started GET "/books?author=Mr.Anonymous&commit=Search" for 127.0.0.1 at 2023-02-13 16:27:37 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr.Anonymous", "commit"=>"Search"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr.Anonymous"]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1777)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 3784)
+Completed 200 OK in 13ms (Views: 8.8ms | ActiveRecord: 0.5ms | Allocations: 4970)
+
+
+Started GET "/books?author=Mr.&commit=Search" for 127.0.0.1 at 2023-02-13 16:27:37 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr.", "commit"=>"Search"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr."]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 5.5ms | Allocations: 1777)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 3784)
+Completed 200 OK in 13ms (Views: 9.0ms | ActiveRecord: 0.5ms | Allocations: 4986)
+
+
+Started GET "/books?author=Mr.+Anonymous&commit=Filter" for 127.0.0.1 at 2023-02-13 16:27:37 -0500
+Processing by BooksController#index as HTML
+  Parameters: {"author"=>"Mr. Anonymous", "commit"=>"Filter"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."author" = ?[0m  [["author", "Mr. Anonymous"]]
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1781)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 3787)
+Completed 200 OK in 11ms (Views: 7.9ms | ActiveRecord: 0.4ms | Allocations: 4869)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:27:38 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 6.1ms | Allocations: 1765)
+  Rendered layout layouts/application.html.erb (Duration: 11.1ms | Allocations: 3776)
+Completed 200 OK in 16ms (Views: 11.6ms | ActiveRecord: 0.6ms | Allocations: 4833)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:27:38 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1509)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | Allocations: 5721)
+Completed 200 OK in 15ms (Views: 13.8ms | ActiveRecord: 0.1ms | Allocations: 6676)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-13 16:27:38 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 967)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 3126)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.0ms | Allocations: 4233)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2023-02-13 16:27:40 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "username"=>"user1", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "user1"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.4ms | Allocations: 447)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | Allocations: 2441)
+Completed 200 OK in 288ms (Views: 1.9ms | ActiveRecord: 0.6ms | Allocations: 3931)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-13 16:27:42 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 574)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 2568)
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms | Allocations: 2895)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:27:52 -0500
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 23.4ms | Allocations: 13295)
+  Rendered layout layouts/application.html.erb (Duration: 33.2ms | Allocations: 20046)
+Completed 200 OK in 47ms (Views: 38.1ms | ActiveRecord: 1.0ms | Allocations: 24499)
+
+
+Started GET "/transactions/2" for 127.0.0.1 at 2023-02-13 16:27:55 -0500
+Processing by TransactionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mTransaction Load (0.1ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:63:in `set_transaction'
+Completed 404 Not Found in 13ms (ActiveRecord: 0.9ms | Allocations: 4248)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Transaction with 'id'=2):
+  
+app/controllers/transactions_controller.rb:63:in `set_transaction'
+Started GET "/transactions/2" for 127.0.0.1 at 2023-02-13 16:27:55 -0500
+Processing by TransactionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mTransaction Load (0.0ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:63:in `set_transaction'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.3ms | Allocations: 2883)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Transaction with 'id'=2):
+  
+app/controllers/transactions_controller.rb:63:in `set_transaction'
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:27:56 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1134)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | Allocations: 3258)
+Completed 200 OK in 17ms (Views: 11.4ms | ActiveRecord: 0.2ms | Allocations: 3630)
+
+
+Started GET "/reviews/2" for 127.0.0.1 at 2023-02-13 16:27:57 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:63:in `set_review'
+Completed 404 Not Found in 13ms (ActiveRecord: 2.0ms | Allocations: 3858)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Review with 'id'=2):
+  
+app/controllers/reviews_controller.rb:63:in `set_review'
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:27:58 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 5.8ms | Allocations: 1064)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 3182)
+Completed 200 OK in 12ms (Views: 11.7ms | ActiveRecord: 0.3ms | Allocations: 3541)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2023-02-13 16:28:03 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 758)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 2944)
+Completed 200 OK in 15ms (Views: 9.5ms | ActiveRecord: 0.3ms | Allocations: 5495)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:28:04 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1123)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 3132)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.1ms | Allocations: 3483)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-13 16:28:05 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 17.1ms | Allocations: 6420)
+  Rendered layout layouts/application.html.erb (Duration: 20.5ms | Allocations: 8598)
+Completed 200 OK in 30ms (Views: 21.3ms | ActiveRecord: 1.9ms | Allocations: 11911)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-13 16:28:07 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1059)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 3065)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.1ms | Allocations: 3409)
+
+
