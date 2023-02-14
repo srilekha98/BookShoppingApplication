@@ -1,47 +1,70 @@
-<%= form_with(model: transaction) do |form| %>
+<%= form_with(model: transaction, local: true) do |form| %>
   <% if transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
 
       <ul>
-        <% transaction.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% transaction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :transaction_number %>
-    <%= form.text_field :transaction_number %>
-  </div>
+  <p>You are purchasing the product: <%= @book.name %></p>
 
   <div class="field">
-    <%= form.label :credit_card_number %>
-    <%= form.text_field :credit_card_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number %>
-  </div>
-
-  <div class="field">
+    <% qty = @book.stock %>
     <%= form.label :quantity %>
-    <%= form.number_field :quantity %>
+    <%= form.number_field :quantity, :id => 'quantity', min: 1, max: qty, onchange: "calculateTotalPrice();" %>
   </div>
 
   <div class="field">
     <%= form.label :total_price %>
-    <%= form.text_field :total_price %>
+    <%= form.text_field :total_price, :id => 'total_price', :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :book_id, value: @book.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :credit_card_number, "Credit card number" %>
+    <% if current_user.cc_num.nil? %>
+      <%= form.text_field :credit_card_number, :id => 'credit_card_number', value: current_user.cc_num %>
+    <% else %>
+      <%= form.text_field :credit_card_number, :id => 'credit_card_number'%>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address, "Address" %>
+    <% if current_user.address.nil? %>
+      <%= form.text_field :address, :id => 'address', value: current_user.address %>
+    <% else %>
+      <%= form.text_field :address, :id => 'address'%>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number, "Phone number" %>
+    <% if current_user.phone_num.nil? %>
+      <%= form.text_field :phone_number, :id => 'phone_number', value: current_user.phone_num %>
+    <% else %>
+      <%= form.text_field :phone_number, :id => 'phone_number'%>
+    <% end %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Complete purchase" %>
   </div>
+
+<%# end %>
+
+  <script type="text/javascript">
+      function calculateTotalPrice() {
+          var price = "<%= @book.price %>";
+          document.getElementById('total_price').value = document.getElementById('quantity').value * price;
+      }
+  </script>
 <% end %>

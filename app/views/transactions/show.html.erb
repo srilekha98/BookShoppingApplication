@@ -6,21 +6,6 @@
 </p>
 
 <p>
-  <strong>Credit card number:</strong>
-  <%= @transaction.credit_card_number %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @transaction.address %>
-</p>
-
-<p>
-  <strong>Phone number:</strong>
-  <%= @transaction.phone_number %>
-</p>
-
-<p>
   <strong>Quantity:</strong>
   <%= @transaction.quantity %>
 </p>
@@ -30,5 +15,4 @@
   <%= @transaction.total_price %>
 </p>
 
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
 <%= link_to 'Back', transactions_path %>

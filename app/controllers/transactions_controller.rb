@@ -3,7 +3,11 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.all
+    if current_user.id != nil
+      @transactions = Transaction.where(user_id: current_user.id)
+    else
+      @transactions = Transaction.all
+    end
   end
 
   # GET /transactions/1 or /transactions/1.json
@@ -13,6 +17,12 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    if @book.nil?
+      @book = Book.find(params[:book_id])
+    end
+    if current_user.cc_num != nil
+      @credit_cards = current_user.cc_num
+    end
   end
 
   # GET /transactions/1/edit
@@ -22,11 +32,18 @@ class TransactionsController < ApplicationController
   # POST /transactions or /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.transaction_number = Array.new(10){[*"A".."Z", *"0".."9"].sample}.join
+    @book = Book.find(params[:transaction]["book_id"])
+    @transaction.user_id = current_user.id
+    @transaction.book_id = @book.id
 
     respond_to do |format|
       if @transaction.save
+        @book.stock = @book.stock - @transaction.quantity
+        @book.save!
         format.html { redirect_to transaction_url(@transaction), notice: "Transaction was successfully created." }
         format.json { render :show, status: :created, location: @transaction }
+
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
