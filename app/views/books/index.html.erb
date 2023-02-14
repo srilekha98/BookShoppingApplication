@@ -27,7 +27,10 @@
         <td><%= book.publisher %></td>
         <td><%= book.price %></td>
         <td><%= book.stock %></td>
-        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Show Book', book %></td>
+        <% if book.stock !=0 %>
+            <td><%= link_to 'Buy Book', new_transaction_path(:book_id => book.id) %></td>
+        <%end %>
         <%if !current_user %>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
           <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>

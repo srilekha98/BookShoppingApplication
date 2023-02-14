@@ -25,6 +25,6 @@
   <%= @book.stock %>
 </p>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<%= link_to 'Edit this book', edit_book_path(@book) %> |
+<%= link_to 'Back to books', books_path %>
 <%= link_to 'Write a Review', new_review_path %>
