@@ -40,7 +40,7 @@
         <%end %>
         <%if admin_user %>
           <td><%= link_to 'Edit', edit_book_path(book) %></td>
-          <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% elsif current_user or admin_user%>
           <td><%= link_to 'Give Review', new_review_path(:book_id => book.id) %></td>
           <td><%= link_to 'Reviews', reviews_path(:book_id => book.id) %></td>
