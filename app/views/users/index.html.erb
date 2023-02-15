@@ -1,41 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<% if admin_user %>
+  <h1>Users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Cc num</th>
-      <th>Phone num</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= user.username %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.address %></td>
-        <td><%= user.cc_num %></td>
-        <td><%= user.phone_num %></td>
-        <td><%= link_to 'Show', user %></td>
-          <%if admin_user %>
-          <td><%= link_to 'Edit', edit_user_path(user) %></td>
-          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <%else %>
-          <td></td>
-           <%end %>
-        <%end  %>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Cc num</th>
+        <th>Phone num</th>
+        <th colspan="3"></th>
       </tr>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.username %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.address %></td>
+          <td><%= user.cc_num %></td>
+          <td><%= user.phone_num %></td>
+          <td><%= link_to 'Show', user %></td>
+            <%if admin_user %>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
+            <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%else %>
+            <td></td>
+             <%end %>
+          <%end  %>
+        </tr>
+    </tbody>
+  </table>
 
-<%#= link_to 'New User', new_user_path %>
+  <br>
+
+  <%= link_to 'Create New User', new_user_path %>
+
+<% else %>
+  <h2>You have no access to this page! Only Admins can access this page!</h2>
+
+<% end %>
+

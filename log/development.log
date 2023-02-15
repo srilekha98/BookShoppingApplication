@@ -20860,3 +20860,696 @@ Completed 200 OK in 27ms (Views: 9.7ms | ActiveRecord: 0.9ms | Allocations: 1544
 Completed 200 OK in 24ms (Views: 6.6ms | ActiveRecord: 0.5ms | Allocations: 14711)
 
 
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:36:49 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1737)
+  Rendered layout layouts/application.html.erb (Duration: 15.0ms | Allocations: 10987)
+Completed 200 OK in 22ms (Views: 19.7ms | ActiveRecord: 0.0ms | Allocations: 15802)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:36:57 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 36.6ms | Allocations: 15072)
+  Rendered layout layouts/application.html.erb (Duration: 39.1ms | Allocations: 17203)
+Completed 200 OK in 41ms (Views: 38.6ms | ActiveRecord: 1.5ms | Allocations: 17608)
+
+
+Started GET "/logout" for 127.0.0.1 at 2023-02-15 14:36:59 -0500
+Processing by SessionsController#destroy as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 1164)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:36:59 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 302)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 2422)
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms | Allocations: 2789)
+
+
+Started GET "/admin_login" for 127.0.0.1 at 2023-02-15 14:37:23 -0500
+Processing by AdminSessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admin_sessions/new.html.erb within layouts/application
+  Rendered admin_sessions/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1028)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | Allocations: 3185)
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.0ms | Allocations: 4294)
+
+
+Started POST "/admin_sessions" for 127.0.0.1 at 2023-02-15 14:37:30 -0500
+Processing by AdminSessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "username"=>"admin", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."username" = ? LIMIT ?[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ app/controllers/admin_sessions_controller.rb:9:in `create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 289ms (ActiveRecord: 1.6ms | Allocations: 5254)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:37:30 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1215)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 3331)
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.1ms | Allocations: 3704)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 14:37:33 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "books"."name" FROM "books"[0m
+  ↳ app/views/reviews/index.html.erb:7
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "users"."username" FROM "users"[0m
+  ↳ app/views/reviews/index.html.erb:12
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:26
+  Rendered reviews/index.html.erb within layouts/application (Duration: 16.5ms | Allocations: 12010)
+  Rendered layout layouts/application.html.erb (Duration: 19.0ms | Allocations: 14196)
+Completed 200 OK in 29ms (Views: 20.3ms | ActiveRecord: 1.4ms | Allocations: 17395)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:37:37 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1073)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 3078)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.1ms | Allocations: 3439)
+
+
+Started GET "/users" for 127.0.0.1 at 2023-02-15 14:37:38 -0500
+Processing by UsersController#index as HTML
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:19
+  Rendered users/index.html.erb within layouts/application (Duration: 5.6ms | Allocations: 2090)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 4280)
+Completed 200 OK in 16ms (Views: 12.3ms | ActiveRecord: 0.5ms | Allocations: 6271)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:37:41 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1071)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 3075)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.2ms | Allocations: 3420)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-15 14:37:43 -0500
+Processing by BooksController#index as HTML
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:29
+  Rendered books/index.html.erb within layouts/application (Duration: 20.0ms | Allocations: 8065)
+  Rendered layout layouts/application.html.erb (Duration: 23.3ms | Allocations: 10245)
+Completed 200 OK in 29ms (Views: 23.8ms | ActiveRecord: 1.6ms | Allocations: 12218)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:37:45 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1065)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | Allocations: 3069)
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.2ms | Allocations: 3413)
+
+
+Started GET "/admin_login" for 127.0.0.1 at 2023-02-15 14:37:45 -0500
+Processing by AdminSessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering admin_sessions/new.html.erb within layouts/application
+  Rendered admin_sessions/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 580)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 2575)
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.0ms | Allocations: 2910)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:42:24 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 10.7ms | Allocations: 8514)
+  Rendered layout layouts/application.html.erb (Duration: 21.6ms | Allocations: 17698)
+Completed 200 OK in 28ms (Views: 25.2ms | ActiveRecord: 0.6ms | Allocations: 22547)
+
+
+Started GET "/users" for 127.0.0.1 at 2023-02-15 14:42:32 -0500
+Processing by UsersController#index as HTML
+  [1m[36mAdmin Load (0.4ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:19
+  Rendered users/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 2162)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | Allocations: 4347)
+Completed 200 OK in 35ms (Views: 9.3ms | ActiveRecord: 1.7ms | Allocations: 17714)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:42:39 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1087)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | Allocations: 3094)
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.1ms | Allocations: 3445)
+
+
+Started GET "/admin_logout" for 127.0.0.1 at 2023-02-15 14:42:41 -0500
+Processing by AdminSessionsController#destroy as HTML
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `admin_user'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 1181)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:42:41 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 308)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 2431)
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.0ms | Allocations: 2800)
+
+
+Started GET "/login" for 127.0.0.1 at 2023-02-15 14:42:42 -0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1027)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | Allocations: 3184)
+Completed 200 OK in 11ms (Views: 9.7ms | ActiveRecord: 0.0ms | Allocations: 4292)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2023-02-15 14:42:53 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "username"=>"user1", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "user1"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 297ms (ActiveRecord: 0.4ms | Allocations: 1401)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:42:53 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1295)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 3304)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.1ms | Allocations: 3647)
+
+
+Started GET "/user" for 127.0.0.1 at 2023-02-15 14:42:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/user"):
+  
+Started GET "/users" for 127.0.0.1 at 2023-02-15 14:42:58 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:19
+  Rendered users/index.html.erb within layouts/application (Duration: 5.2ms | Allocations: 1064)
+  Rendered layout layouts/application.html.erb (Duration: 12.4ms | Allocations: 3186)
+Completed 200 OK in 17ms (Views: 13.0ms | ActiveRecord: 0.4ms | Allocations: 4404)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:43:00 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1084)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 3088)
+Completed 200 OK in 8ms (Views: 6.5ms | ActiveRecord: 0.1ms | Allocations: 3415)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:44:45 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 34.0ms | Allocations: 16056)
+  Rendered layout layouts/application.html.erb (Duration: 45.9ms | Allocations: 24495)
+Completed 200 OK in 71ms (Views: 66.5ms | ActiveRecord: 1.3ms | Allocations: 30724)
+
+
+Started GET "/users" for 127.0.0.1 at 2023-02-15 14:44:49 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 509)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | Allocations: 2710)
+Completed 200 OK in 20ms (Views: 12.8ms | ActiveRecord: 0.7ms | Allocations: 4712)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:44:52 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1224)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 3231)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.1ms | Allocations: 3582)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 14:44:57 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "books"."name" FROM "books"[0m
+  ↳ app/views/reviews/index.html.erb:7
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "users"."username" FROM "users"[0m
+  ↳ app/views/reviews/index.html.erb:12
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:26
+  Rendered reviews/index.html.erb within layouts/application (Duration: 27.6ms | Allocations: 11095)
+  Rendered layout layouts/application.html.erb (Duration: 31.3ms | Allocations: 13277)
+Completed 200 OK in 44ms (Views: 32.7ms | ActiveRecord: 2.1ms | Allocations: 16501)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:44:59 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1164)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 3172)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.2ms | Allocations: 3540)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 14:46:59 -0500
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReviewsController#index as HTML
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1662)
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | Allocations: 10888)
+Completed 200 OK in 31ms (Views: 16.9ms | ActiveRecord: 0.5ms | Allocations: 31325)
+
+
+Started GET "/transactions" for 127.0.0.1 at 2023-02-15 14:47:03 -0500
+Processing by TransactionsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 359)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 2560)
+Completed 200 OK in 15ms (Views: 7.7ms | ActiveRecord: 0.8ms | Allocations: 6208)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 14:47:05 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 56)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 2064)
+Completed 200 OK in 10ms (Views: 5.2ms | ActiveRecord: 0.3ms | Allocations: 3279)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:47:05 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1877)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | Allocations: 4062)
+Completed 200 OK in 15ms (Views: 13.6ms | ActiveRecord: 0.3ms | Allocations: 5166)
+
+
+Started GET "/transactions.2" for 127.0.0.1 at 2023-02-15 14:47:07 -0500
+Processing by TransactionsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 56)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 2061)
+Completed 200 OK in 7ms (Views: 3.5ms | ActiveRecord: 0.2ms | Allocations: 3385)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:47:08 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1080)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 3084)
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.1ms | Allocations: 3411)
+
+
+Started GET "/transactions.2" for 127.0.0.1 at 2023-02-15 14:47:09 -0500
+Processing by TransactionsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering transactions/index.html.erb within layouts/application
+  Rendered transactions/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 56)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 2069)
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 0.2ms | Allocations: 3179)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:47:11 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1080)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 3084)
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.2ms | Allocations: 3411)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2023-02-15 14:47:12 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 2.7ms | Allocations: 753)
+  Rendered layout layouts/application.html.erb (Duration: 7.5ms | Allocations: 2937)
+Completed 200 OK in 18ms (Views: 11.0ms | ActiveRecord: 0.4ms | Allocations: 5495)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:47:14 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1195)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 3199)
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.1ms | Allocations: 3543)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-15 14:47:15 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:29
+  Rendered books/index.html.erb within layouts/application (Duration: 18.9ms | Allocations: 8685)
+  Rendered layout layouts/application.html.erb (Duration: 22.1ms | Allocations: 10866)
+Completed 200 OK in 33ms (Views: 23.5ms | ActiveRecord: 1.8ms | Allocations: 14515)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:47:16 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1141)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 3145)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.1ms | Allocations: 3491)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 14:47:18 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 56)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 2061)
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.1ms | Allocations: 3125)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:47:19 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1080)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | Allocations: 3084)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.2ms | Allocations: 3411)
+
+
+Started GET "/reviews/2" for 127.0.0.1 at 2023-02-15 14:47:21 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:79:in `set_review'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/show.html.erb within layouts/application
+  Rendered reviews/show.html.erb within layouts/application (Duration: 1.9ms | Allocations: 312)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 2316)
+Completed 200 OK in 22ms (Views: 7.1ms | ActiveRecord: 0.7ms | Allocations: 8337)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:47:22 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1080)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 3085)
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.1ms | Allocations: 3412)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:47:39 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 1758)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 4094)
+Completed 200 OK in 21ms (Views: 18.3ms | ActiveRecord: 0.3ms | Allocations: 5309)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2023-02-15 14:47:40 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:65:in `set_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 2.1ms | Allocations: 624)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 2808)
+Completed 200 OK in 16ms (Views: 10.1ms | ActiveRecord: 0.3ms | Allocations: 5091)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:47:41 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 6.0ms | Allocations: 1195)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | Allocations: 3199)
+Completed 200 OK in 13ms (Views: 11.4ms | ActiveRecord: 0.9ms | Allocations: 3544)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:53:24 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 7.0ms | Allocations: 1080)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 3084)
+Completed 200 OK in 15ms (Views: 13.1ms | ActiveRecord: 0.7ms | Allocations: 3411)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 14:53:25 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "books"."name" FROM "books"[0m
+  ↳ app/views/reviews/index.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "users"."username" FROM "users"[0m
+  ↳ app/views/reviews/index.html.erb:11
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:25
+  Rendered reviews/index.html.erb within layouts/application (Duration: 14.0ms | Allocations: 4629)
+  Rendered layout layouts/application.html.erb (Duration: 18.5ms | Allocations: 6811)
+Completed 200 OK in 30ms (Views: 22.8ms | ActiveRecord: 1.3ms | Allocations: 8518)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:53:27 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1145)
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 3152)
+Completed 200 OK in 13ms (Views: 12.1ms | ActiveRecord: 0.2ms | Allocations: 3497)
+
+
+Started GET "/reviews/2" for 127.0.0.1 at 2023-02-15 14:53:28 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:79:in `set_review'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/show.html.erb within layouts/application
+  Rendered reviews/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 281)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 2285)
+Completed 200 OK in 11ms (Views: 6.3ms | ActiveRecord: 0.7ms | Allocations: 4032)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-15 14:53:29 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1080)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 3084)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.1ms | Allocations: 3411)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 14:53:30 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "books"."name" FROM "books"[0m
+  ↳ app/views/reviews/index.html.erb:6
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "users"."username" FROM "users"[0m
+  ↳ app/views/reviews/index.html.erb:11
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:25
+  Rendered reviews/index.html.erb within layouts/application (Duration: 10.5ms | Allocations: 3719)
+  Rendered layout layouts/application.html.erb (Duration: 15.0ms | Allocations: 5723)
+Completed 200 OK in 18ms (Views: 14.9ms | ActiveRecord: 1.1ms | Allocations: 6782)
+
+
+Started GET "/reviews?user=user1&commit=Filter" for 127.0.0.1 at 2023-02-15 14:53:34 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"user"=>"user1", "commit"=>"Filter"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."name" FROM "books"[0m
+  ↳ app/views/reviews/index.html.erb:6
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "users"."username" FROM "users"[0m
+  ↳ app/views/reviews/index.html.erb:11
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" INNER JOIN "users" ON "users"."id" = "reviews"."user_id" WHERE "users"."username" = ?[0m  [["username", "user1"]]
+  ↳ app/views/reviews/index.html.erb:25
+  Rendered reviews/index.html.erb within layouts/application (Duration: 31.8ms | Allocations: 7059)
+  Rendered layout layouts/application.html.erb (Duration: 34.3ms | Allocations: 9191)
+Completed 200 OK in 39ms (Views: 34.1ms | ActiveRecord: 1.2ms | Allocations: 10899)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 14:53:42 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."name" FROM "books"[0m
+  ↳ app/views/reviews/index.html.erb:6
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "users"."username" FROM "users"[0m
+  ↳ app/views/reviews/index.html.erb:11
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:25
+  Rendered reviews/index.html.erb within layouts/application (Duration: 23.2ms | Allocations: 3745)
+  Rendered layout layouts/application.html.erb (Duration: 25.4ms | Allocations: 5755)
+Completed 200 OK in 30ms (Views: 25.4ms | ActiveRecord: 1.0ms | Allocations: 6905)
+
+

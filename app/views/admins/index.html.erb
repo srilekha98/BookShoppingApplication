@@ -1,31 +1,37 @@
 <p id="notice"><%= notice %></p>
+<% if admin_user %>
+    <h1>Admins</h1>
 
-<h1>Admins</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Password</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <tbody>
+        <% @admins.each do |admin| %>
+          <tr>
+            <td><%= admin.username %></td>
+            <td><%= admin.password %></td>
+            <td><%= admin.name %></td>
+            <td><%= admin.email %></td>
+            <td><%= link_to 'Show', admin %></td>
+            <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
+            <td><%= link_to 'Delete', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <tbody>
-    <% @admins.each do |admin| %>
-      <tr>
-        <td><%= admin.username %></td>
-        <td><%= admin.password %></td>
-        <td><%= admin.name %></td>
-        <td><%= admin.email %></td>
-        <td><%= link_to 'Show', admin %></td>
-        <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
-        <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <br>
 
-<br>
+<% else %>
+
+  <h2>You have no access to this page! Only Admins can access this page!</h2>
+
+<% end %>

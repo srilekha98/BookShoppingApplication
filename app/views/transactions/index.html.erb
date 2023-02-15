@@ -1,27 +1,33 @@
 <p id="notice"><%= notice %></p>
+<% if admin_user %>
+  <h1>Purchase History</h1>
 
-<h1>Purchase History</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Transaction number</th>
-      <th>Quantity</th>
-      <th>Total price</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @transactions.each do |transaction| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= transaction.transaction_number %></td>
-        <td><%= transaction.quantity %></td>
-        <td><%= transaction.total_price %></td>
-        <td><%= link_to 'Show', transaction %></td>
+        <th>Transaction number</th>
+        <th>Quantity</th>
+        <th>Total price</th>
+        <th colspan="5"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.transaction_number %></td>
+          <td><%= transaction.quantity %></td>
+          <td><%= transaction.total_price %></td>
+          <td><%= link_to 'Show', transaction %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+<% else %>
+
+  <h2>You have no access to this page! Only Admins can access this page!</h2>
+
+<% end %>
