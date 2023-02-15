@@ -36,6 +36,10 @@
     <%= form.number_field :stock %>
   </div>
 
+  <div class="field">
+    <%= form.hidden_field :average_rating , value:0.0 %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

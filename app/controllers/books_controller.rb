@@ -5,6 +5,8 @@ class BooksController < ApplicationController
   def index
     @books = if params[:author].present?
                Book.by_author(params[:author])
+             elsif params[:rating].present?
+               Book.where(':average_rating > ?',params[:rating].to_i)
              else
                Book.all
              end
@@ -69,7 +71,7 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:name, :author, :publisher, :price, :stock)
+      params.require(:book).permit(:name, :author, :publisher, :price, :stock, :average_rating)
     end
 
 end

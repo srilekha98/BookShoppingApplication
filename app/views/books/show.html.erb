@@ -25,6 +25,11 @@
   <%= @book.stock %>
 </p>
 
+<p>
+  <strong>Rating:</strong>
+  <%= @book.average_rating %>
+</p>
+
 <%= link_to 'Edit this book', edit_book_path(@book) %> |
 <%= link_to 'Back to books', books_path %>
 <%= link_to 'Write a Review', new_review_path %>

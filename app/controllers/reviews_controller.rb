@@ -5,7 +5,6 @@ class ReviewsController < ApplicationController
   def index
     @reviews = if params[:book_id].present?
                 Review.where(book_id: params[:book_id])
-                # @bookid = params[:book_id]
              else
                Review.all
              end
@@ -29,11 +28,15 @@ class ReviewsController < ApplicationController
   # POST /reviews or /reviews.json
   def create
     @review = Review.new(review_params)
-    # @book = Book.find(params[:book_id])
+    @book = Book.find(params[:review]["book_id"])
     @review.user_id = current_user.id
-    @review.book_id = @num
+    @review.book_id = @book.id
     respond_to do |format|
       if @review.save
+        @book.average_rating = @book.average_rating + @review.rating
+        @book.average_rating = @book.average_rating / Review.where(book_id: @book.id).count
+        @book.average_rating = @book.average_rating.round(2)
+        @book.save!
         format.html { redirect_to review_url(@review), notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
       else
