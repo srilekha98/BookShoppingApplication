@@ -53,4 +53,6 @@
 
 <br>
 
-<%= link_to 'New Book', new_book_path %>
+<% if admin_user %>
+  <%= link_to 'New Book', new_book_path %>
+<% end %>
