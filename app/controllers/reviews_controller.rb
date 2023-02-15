@@ -4,10 +4,14 @@ class ReviewsController < ApplicationController
   # GET /reviews or /reviews.json
   def index
     @reviews = if params[:book_id].present?
-                Review.where(book_id: params[:book_id])
-             else
-               Review.all
-             end
+                  Review.where(book_id: params[:book_id])
+               elsif params[:book].present?
+                  Review.joins(:book).where(books: {name: params[:book]})
+               elsif params[:user].present?
+                  Review.joins(:user).where(users: {username: params[:user]})
+               else
+                 Review.all
+               end
   end
 
   # GET /reviews/1 or /reviews/1.json
