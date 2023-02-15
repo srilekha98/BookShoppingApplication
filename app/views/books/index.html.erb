@@ -34,16 +34,14 @@
         <td><%= book.price %></td>
         <td><%= book.stock %></td>
         <td><%= book.average_rating %></td>
-        <td><%= link_to 'Show Book', book %></td>
-        <% if book.stock !=0 %>
+        <td><%= link_to 'Reviews', reviews_path(:book_id => book.id) %></td>
+        <% if book.stock !=0 and current_user%>
             <td><%= link_to 'Buy Book', new_transaction_path(:book_id => book.id) %></td>
+            <td><%= link_to 'Give Review', new_review_path(:book_id => book.id) %></td>
         <%end %>
         <%if admin_user %>
           <td><%= link_to 'Edit', edit_book_path(book) %></td>
           <td><%= link_to 'Delete', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% elsif current_user or admin_user%>
-          <td><%= link_to 'Give Review', new_review_path(:book_id => book.id) %></td>
-          <td><%= link_to 'Reviews', reviews_path(:book_id => book.id) %></td>
         <%else %>
         <td></td>
         <%end %>
