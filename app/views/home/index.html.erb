@@ -6,7 +6,8 @@
     <ul>
       <li><%= link_to "My Profile", user_path(current_user.id) %> </li>
       <li><%= link_to "All Books", books_path %> </li>
-      <li><%= link_to "My Reviews", reviews_path %> </li>
+      <li><%= link_to "All Reviews", reviews_path %> </li>
+      <li><%= link_to "My Reviews", review_path(current_user.id) %> </li>
       <li><%= link_to "My Profile", user_path(current_user.id) %></li>
       <li><%= link_to "My Shopping History", transactions_path(current_user.id) %> </li>
       <li><%= link_to "Log Out", logout_path %></li>
@@ -19,6 +20,7 @@
     <ul>
       <li><%= link_to "My Profile", admin_path(admin_user.id) %></li>
       <li><%= link_to "All Books", books_path %></li>
+      <li><%= link_to "All Users", users_path %></li>
       <li><%= link_to "All Reviews", reviews_path %></li>
       <li><%= link_to "Shopping History", transactions_path %></li>
       <li><%= link_to "Log Out", admin_logout_path %></li>
