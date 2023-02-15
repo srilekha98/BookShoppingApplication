@@ -9,6 +9,8 @@ class ReviewsController < ApplicationController
                   Review.joins(:book).where(books: {name: params[:book]})
                elsif params[:user].present?
                   Review.joins(:user).where(users: {username: params[:user]})
+               elsif params[:user_id].present?
+                  Review.where(user_id: current_user.id)
                else
                  Review.all
                end
