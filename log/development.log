@@ -18381,3 +18381,124 @@ Processing by HomeController#index as HTML
 Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.2ms | Allocations: 3393)
 
 
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-02-15 13:01:53 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 34.6ms | Allocations: 16967)
+  Rendered layout layouts/application.html.erb (Duration: 46.8ms | Allocations: 25174)
+Completed 200 OK in 56ms (Views: 52.9ms | ActiveRecord: 1.4ms | Allocations: 30192)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 13:01:56 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.3ms | Allocations: 1767)
+
+
+  
+SyntaxError (/Users/sankettangade/Documents/Spring 23/OODD/Book-Shopping-Application/app/models/review.rb:4: syntax error, unexpected ','
+... validates :rating, presence: , numericality: {greater_than:...
+...                              ^
+):
+  
+app/models/review.rb:4: syntax error, unexpected ','
+app/models/review.rb:4: syntax error, unexpected ','
+app/models/review.rb:4: syntax error, unexpected ','
+app/controllers/reviews_controller.rb:13:in `index'
+Started GET "/" for 127.0.0.1 at 2023-02-15 13:01:57 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1181)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 3306)
+Completed 200 OK in 10ms (Views: 9.5ms | ActiveRecord: 0.2ms | Allocations: 3684)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-15 13:01:58 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:29
+  Rendered books/index.html.erb within layouts/application (Duration: 26.2ms | Allocations: 9249)
+  Rendered layout layouts/application.html.erb (Duration: 29.8ms | Allocations: 11430)
+Completed 200 OK in 40ms (Views: 30.4ms | ActiveRecord: 1.9ms | Allocations: 15080)
+
+
+Started GET "/reviews?book_id=2" for 127.0.0.1 at 2023-02-15 13:02:00 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms | Allocations: 1539)
+
+
+  
+SyntaxError (/Users/sankettangade/Documents/Spring 23/OODD/Book-Shopping-Application/app/models/review.rb:4: syntax error, unexpected ','
+... validates :rating, presence: , numericality: {greater_than:...
+...                              ^
+):
+  
+app/models/review.rb:4: syntax error, unexpected ','
+app/models/review.rb:4: syntax error, unexpected ','
+app/models/review.rb:4: syntax error, unexpected ','
+app/controllers/reviews_controller.rb:7:in `index'
+Started GET "/" for 127.0.0.1 at 2023-02-15 13:04:23 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:8:in `<class:User>'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 16.3ms | Allocations: 16819)
+  Rendered layout layouts/application.html.erb (Duration: 24.9ms | Allocations: 25512)
+Completed 200 OK in 33ms (Views: 29.4ms | ActiveRecord: 0.8ms | Allocations: 30070)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-15 13:04:25 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "books"."name" FROM "books"[0m
+  ↳ app/views/reviews/index.html.erb:7
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "users"."username" FROM "users"[0m
+  ↳ app/views/reviews/index.html.erb:12
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:26
+  Rendered reviews/index.html.erb within layouts/application (Duration: 18.8ms | Allocations: 10851)
+  Rendered layout layouts/application.html.erb (Duration: 21.9ms | Allocations: 13033)
+Completed 200 OK in 34ms (Views: 22.8ms | ActiveRecord: 1.8ms | Allocations: 16294)
+
+
