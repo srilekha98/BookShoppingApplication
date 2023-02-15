@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
-<% if admin_user %>
   <h1>Purchase History</h1>
 
   <table>
     <thead>
       <tr>
+        <th>User ID</th>
         <th>Transaction number</th>
         <th>Quantity</th>
         <th>Total price</th>
@@ -12,9 +12,11 @@
       </tr>
     </thead>
 
+<% if admin_user %>
     <tbody>
       <% @transactions.each do |transaction| %>
         <tr>
+          <td><%= transaction.user_id %></td>
           <td><%= transaction.transaction_number %></td>
           <td><%= transaction.quantity %></td>
           <td><%= transaction.total_price %></td>
@@ -28,6 +30,18 @@
 
 <% else %>
 
-  <h2>You have no access to this page! Only Admins can access this page!</h2>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+         <% if current_user.id == transaction.user_id %>
+          <td><%= transaction.user_id %></td>
+          <td><%= transaction.transaction_number %></td>
+          <td><%= transaction.quantity %></td>
+          <td><%= transaction.total_price %></td>
+          <td><%= link_to 'Show', transaction %></td>
+        <% end %>
+        </tr>
+      <% end %>
+    </tbody>
 
 <% end %>
