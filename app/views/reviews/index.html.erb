@@ -28,7 +28,10 @@
         <td><%= review.rating %></td>
         <td><%= review.review %></td>
         <td><%= link_to 'Show', review %></td>
-        <% if current_user.id == review.user_id %>
+        <% if admin_user %>
+          <td><%= link_to 'Edit', edit_review_path(review) %></td>
+          <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif current_user.id == review.user_id %>
             <td><%= link_to 'Edit', edit_review_path(review) %></td>
             <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
