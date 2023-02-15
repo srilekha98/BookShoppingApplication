@@ -29,7 +29,8 @@
   <strong>Rating:</strong>
   <%= @book.average_rating %>
 </p>
-
-<%= link_to 'Edit this book', edit_book_path(@book) %> |
+<% if admin_user %>
+  <%= link_to 'Edit this book', edit_book_path(@book) %>
+<% end %>
 <%= link_to 'Back to books', books_path %>
 <%= link_to 'Write a Review', new_review_path %>
