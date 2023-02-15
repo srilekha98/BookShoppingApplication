@@ -3,10 +3,17 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    if current_user.id != nil
-      @transactions = Transaction.where(user_id: current_user.id)
-    else
-      @transactions = Transaction.all
+    if admin_user
+      if admin_user.id != nil
+        @transactions = Transaction.all
+      end
+    end
+    if current_user
+      if current_user.id != nil
+        @transactions = Transaction.where(user_id: current_user.id)
+      else
+        @transactions = Transaction.all
+      end
     end
   end
 
