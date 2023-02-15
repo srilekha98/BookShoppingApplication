@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   # GET /reviews or /reviews.json
   def index
     @reviews = if params[:book_id].present?
-                Review.find_by_book_id(params[:book_id])
+                Review.where(book_id: params[:book_id])
              else
                Review.all
              end
