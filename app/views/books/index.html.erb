@@ -35,7 +35,7 @@
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
           <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <%else %>
-        <td></td>
+          <td><%= link_to 'Reviews', reviews_path(:book_id => book.id) %></td>
         <%end %>
       </tr>
     <% end %>

@@ -8874,3 +8874,2917 @@ Processing by TransactionsController#show as HTML
 Completed 200 OK in 8ms (Views: 3.8ms | ActiveRecord: 0.5ms | Allocations: 3365)
 
 
+  [1m[35m (6.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddKeysToReviews (20230215004254)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id" FROM "reviews"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_924a0b30ca"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_review_id" ON "reviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_book_id" ON "reviews" ("book_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "reviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id" FROM "areviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "areviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_user_id" ON "areviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id" FROM "reviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_924a0b30ca"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+, CONSTRAINT "fk_rails_74a66bd6c5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_review_id" ON "reviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_book_id" ON "reviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "reviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id" FROM "areviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "areviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_user_id" ON "areviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id" FROM "reviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddKeysToReviews (20230215004254)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id" FROM "reviews"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_924a0b30ca"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_review_id" ON "reviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_book_id" ON "reviews" ("book_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "reviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id" FROM "areviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "areviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_user_id" ON "areviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id" FROM "reviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_924a0b30ca"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+, CONSTRAINT "fk_rails_74a66bd6c5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_review_id" ON "reviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_book_id" ON "reviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "reviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id" FROM "areviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "areviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_user_id" ON "areviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id" FROM "reviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mrollback transaction[0m
+Started GET "/" for 127.0.0.1 at 2023-02-14 19:49:39 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20230215004254_add_keys_to_reviews.rb
+
+
+):
+  
+activerecord (6.1.7.2) lib/active_record/migration.rb:625:in `check_pending!'
+activerecord (6.1.7.2) lib/active_record/migration.rb:590:in `block (2 levels) in call'
+activesupport (6.1.7.2) lib/active_support/evented_file_update_checker.rb:59:in `execute'
+activerecord (6.1.7.2) lib/active_record/migration.rb:595:in `block in call'
+activerecord (6.1.7.2) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.7.2) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.2) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.2) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.2) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.6.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+railties (6.1.7.2) lib/rails/engine.rb:539:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/rails/actions" for 127.0.0.1 at 2023-02-14 19:49:45 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddKeysToReviews (20230215004254)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id" FROM "reviews"[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_924a0b30ca"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_review_id" ON "reviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_book_id" ON "reviews" ("book_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "reviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id" FROM "areviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "areviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_user_id" ON "areviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id" FROM "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_924a0b30ca"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+, CONSTRAINT "fk_rails_74a66bd6c5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_review_id" ON "reviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_book_id" ON "reviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "reviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id" FROM "areviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "areviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_user_id" ON "areviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id","user_id" FROM "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mrollback transaction[0m
+  
+StandardError (An error has occurred, this and all later migrations canceled:
+
+you can't define an already defined column 'book_id'.):
+  
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/schema_definitions.rb:413:in `column'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:238:in `block in add_column'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:380:in `block in alter_table'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:419:in `block in copy_table'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:314:in `create_table'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:399:in `copy_table'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:392:in `move_table'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:386:in `block (2 levels) in alter_table'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:202:in `disable_referential_integrity'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:384:in `block in alter_table'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/database_statements.rb:318:in `transaction'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:383:in `alter_table'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:237:in `add_column'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/schema_definitions.rb:604:in `column'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/schema_definitions.rb:172:in `block in add_to'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/schema_definitions.rb:171:in `each'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/schema_definitions.rb:171:in `add_to'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:973:in `add_reference'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/sqlite3_adapter.rb:287:in `add_reference'
+activerecord (6.1.7.2) lib/active_record/migration.rb:929:in `block in method_missing'
+activerecord (6.1.7.2) lib/active_record/migration.rb:897:in `block in say_with_time'
+C:/Ruby30-x64/lib/ruby/3.0.0/benchmark.rb:293:in `measure'
+activerecord (6.1.7.2) lib/active_record/migration.rb:897:in `say_with_time'
+activerecord (6.1.7.2) lib/active_record/migration.rb:918:in `method_missing'
+db/migrate/20230215004254_add_keys_to_reviews.rb:4:in `change'
+activerecord (6.1.7.2) lib/active_record/migration.rb:867:in `exec_migration'
+activerecord (6.1.7.2) lib/active_record/migration.rb:851:in `block (2 levels) in migrate'
+C:/Ruby30-x64/lib/ruby/3.0.0/benchmark.rb:293:in `measure'
+activerecord (6.1.7.2) lib/active_record/migration.rb:850:in `block in migrate'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:462:in `with_connection'
+activerecord (6.1.7.2) lib/active_record/migration.rb:849:in `migrate'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1037:in `migrate'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1329:in `block in execute_migration_in_transaction'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1380:in `block in ddl_transaction'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/database_statements.rb:320:in `block in transaction'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/transaction.rb:319:in `block in within_new_transaction'
+activesupport (6.1.7.2) lib/active_support/concurrency/load_interlock_aware_monitor.rb:26:in `block (2 levels) in synchronize'
+activesupport (6.1.7.2) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `handle_interrupt'
+activesupport (6.1.7.2) lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `block in synchronize'
+activesupport (6.1.7.2) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `handle_interrupt'
+activesupport (6.1.7.2) lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `synchronize'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/transaction.rb:317:in `within_new_transaction'
+activerecord (6.1.7.2) lib/active_record/connection_adapters/abstract/database_statements.rb:320:in `transaction'
+activerecord (6.1.7.2) lib/active_record/transactions.rb:209:in `transaction'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1380:in `ddl_transaction'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1328:in `execute_migration_in_transaction'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1302:in `each'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1302:in `migrate_without_lock'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1253:in `migrate'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1086:in `up'
+activerecord (6.1.7.2) lib/active_record/migration.rb:1061:in `migrate'
+activerecord (6.1.7.2) lib/active_record/tasks/database_tasks.rb:237:in `migrate'
+activerecord (6.1.7.2) lib/active_record/migration.rb:137:in `block in <class:PendingMigrationError>'
+activesupport (6.1.7.2) lib/active_support/actionable_error.rb:28:in `dispatch'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/actionable_exceptions.rb:20:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.2) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.2) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.2) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.6.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.6.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.2) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+railties (6.1.7.2) lib/rails/engine.rb:539:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveUserFromReview (20230215005544)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user" varchar DEFAULT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","user","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","user","references","book_id" FROM "reviews"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, CONSTRAINT "fk_rails_924a0b30ca"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_review_id" ON "reviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_book_id" ON "reviews" ("book_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "reviews" ("id","review_id","rating","review","created_at","updated_at","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","references","book_id" FROM "areviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "areviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230215005544"]]
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveuserIdFromUser (20230215005915)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230215005915"]]
+  [1m[36mTRANSACTION (28.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddKeysToReviews (20230215010223)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","references","book_id" FROM "reviews"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_924a0b30ca"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_review_id" ON "reviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_book_id" ON "reviews" ("book_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "reviews" ("id","review_id","rating","review","created_at","updated_at","references","book_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","references","book_id" FROM "areviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "areviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_user_id" ON "areviews" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areviews_on_book_id" ON "areviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_areviews_on_review_id" ON "areviews" ("review_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "areviews" ("id","review_id","rating","review","created_at","updated_at","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","references","book_id","user_id" FROM "reviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "reviews"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer NOT NULL PRIMARY KEY, "review_id" varchar DEFAULT NULL, "rating" integer DEFAULT NULL, "review" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "references" varchar DEFAULT NULL, "book_id" integer NOT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_924a0b30ca"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+, CONSTRAINT "fk_rails_74a66bd6c5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_reviews_on_review_id" ON "reviews" ("review_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_book_id" ON "reviews" ("book_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_user_id" ON "reviews" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "reviews" ("id","review_id","rating","review","created_at","updated_at","references","book_id","user_id")
+                     SELECT "id","review_id","rating","review","created_at","updated_at","references","book_id","user_id" FROM "areviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "areviews"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230215010223"]]
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-02-14 20:02:56 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 74.2ms | Allocations: 18337)
+  Rendered layout layouts/application.html.erb (Duration: 317.4ms | Allocations: 53167)
+Completed 200 OK in 366ms (Views: 328.3ms | ActiveRecord: 1.1ms | Allocations: 58164)
+
+
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 20:03:00 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 11.0ms | Allocations: 1311)
+  Rendered layout layouts/application.html.erb (Duration: 16.9ms | Allocations: 3874)
+Completed 200 OK in 51ms (Views: 21.0ms | ActiveRecord: 0.5ms | Allocations: 7245)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-14 20:03:02 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1122)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | Allocations: 3568)
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.2ms | Allocations: 4000)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:03:04 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 20.0ms | Allocations: 6739)
+  Rendered layout layouts/application.html.erb (Duration: 25.8ms | Allocations: 9294)
+Completed 200 OK in 46ms (Views: 29.1ms | ActiveRecord: 1.3ms | Allocations: 13073)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:14:19 -0500
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:14:19 -0500
+  [1m[35m (7.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#index as HTML
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 55.8ms | Allocations: 20702)
+  Rendered layout layouts/application.html.erb (Duration: 56.5ms | Allocations: 20837)
+Completed 500 Internal Server Error in 178ms (ActiveRecord: 1.0ms | Allocations: 39072)
+
+
+  Rendered books/index.html.erb within layouts/application (Duration: 51.3ms | Allocations: 15166)
+  Rendered layout layouts/application.html.erb (Duration: 65.2ms | Allocations: 22315)
+Completed 500 Internal Server Error in 202ms (ActiveRecord: 2.2ms | Allocations: 41038)
+
+
+  
+ActionView::Template::Error (undefined method `index_transaction_path' for #<ActionView::Base:0x000000000083b8>
+Did you mean?  new_transaction_path
+               edit_transaction_path):
+    35:         <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    36:           <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    37:           <%else %>
+    38:           <td><%= link_to 'Reviews', index_transaction_path(:book_id => book.id) %></td>
+    39:         <%end %>
+    40:       </tr>
+    41:     <% end %>
+  
+app/views/books/index.html.erb:38
+app/views/books/index.html.erb:23
+  
+ActionView::Template::Error (undefined method `index_transaction_path' for #<ActionView::Base:0x00000000008368>
+Did you mean?  new_transaction_path
+               edit_transaction_path):
+    35:         <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    36:           <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    37:           <%else %>
+    38:           <td><%= link_to 'Reviews', index_transaction_path(:book_id => book.id) %></td>
+    39:         <%end %>
+    40:       </tr>
+    41:     <% end %>
+  
+app/views/books/index.html.erb:38
+app/views/books/index.html.erb:23
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:15:18 -0500
+  [1m[35m (9.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 24.2ms | Allocations: 22498)
+  Rendered layout layouts/application.html.erb (Duration: 24.7ms | Allocations: 22979)
+Completed 500 Internal Server Error in 61ms (ActiveRecord: 1.9ms | Allocations: 41879)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :book_id=>1, :controller=>"reviews"}, missing required keys: [:id]
+Did you mean?  review_url
+               reviews_url
+               reviews_path
+               edit_review_url):
+    35:         <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    36:           <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    37:           <%else %>
+    38:           <td><%= link_to 'Reviews', review_path(:book_id => book.id) %></td>
+    39:         <%end %>
+    40:       </tr>
+    41:     <% end %>
+  
+app/views/books/index.html.erb:38
+app/views/books/index.html.erb:23
+Started GET "/" for 127.0.0.1 at 2023-02-14 20:15:22 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 16.0ms | Allocations: 1601)
+  Rendered layout layouts/application.html.erb (Duration: 125.5ms | Allocations: 9218)
+Completed 200 OK in 132ms (Views: 129.9ms | ActiveRecord: 0.3ms | Allocations: 10369)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-14 20:15:22 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1053)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 3497)
+Completed 200 OK in 8ms (Views: 7.8ms | ActiveRecord: 0.2ms | Allocations: 3933)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:15:24 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 3103)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 3175)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.5ms | Allocations: 4422)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :book_id=>1, :controller=>"reviews"}, missing required keys: [:id]
+Did you mean?  review_url
+               reviews_url
+               reviews_path
+               edit_review_url):
+    35:         <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    36:           <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    37:           <%else %>
+    38:           <td><%= link_to 'Reviews', review_path(:book_id => book.id) %></td>
+    39:         <%end %>
+    40:       </tr>
+    41:     <% end %>
+  
+app/views/books/index.html.erb:38
+app/views/books/index.html.erb:23
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:16:31 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 23.7ms | Allocations: 14578)
+  Rendered layout layouts/application.html.erb (Duration: 24.2ms | Allocations: 14757)
+Completed 500 Internal Server Error in 54ms (ActiveRecord: 1.9ms | Allocations: 31187)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"reviews"}, missing required keys: [:id]
+Did you mean?  review_url
+               reviews_url
+               reviews_path
+               edit_review_url):
+    35:         <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    36:           <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    37:           <%else %>
+    38:           <td><%= link_to 'Reviews', review_path %></td>
+    39:         <%end %>
+    40:       </tr>
+    41:     <% end %>
+  
+app/views/books/index.html.erb:38
+app/views/books/index.html.erb:23
+Started GET "/" for 127.0.0.1 at 2023-02-14 20:16:35 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 5.5ms | Allocations: 1602)
+  Rendered layout layouts/application.html.erb (Duration: 35.2ms | Allocations: 9222)
+Completed 200 OK in 41ms (Views: 39.2ms | ActiveRecord: 0.3ms | Allocations: 10373)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:16:37 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 3099)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 3171)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.5ms | Allocations: 4418)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"reviews"}, missing required keys: [:id]
+Did you mean?  review_url
+               reviews_url
+               reviews_path
+               edit_review_url):
+    35:         <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    36:           <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    37:           <%else %>
+    38:           <td><%= link_to 'Reviews', review_path %></td>
+    39:         <%end %>
+    40:       </tr>
+    41:     <% end %>
+  
+app/views/books/index.html.erb:38
+app/views/books/index.html.erb:23
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:18:42 -0500
+  [1m[35m (9.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 22.8ms | Allocations: 12969)
+  Rendered layout layouts/application.html.erb (Duration: 56.0ms | Allocations: 41776)
+Completed 200 OK in 88ms (Views: 62.8ms | ActiveRecord: 1.9ms | Allocations: 58625)
+
+
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 20:18:46 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 9.9ms | Allocations: 1294)
+  Rendered layout layouts/application.html.erb (Duration: 15.7ms | Allocations: 3857)
+Completed 200 OK in 57ms (Views: 19.8ms | ActiveRecord: 0.5ms | Allocations: 7179)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:18:48 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 2105)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 4489)
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 0.5ms | Allocations: 5679)
+
+
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 20:18:57 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 755)
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 3139)
+Completed 200 OK in 9ms (Views: 7.0ms | ActiveRecord: 0.3ms | Allocations: 4224)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:19:02 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 4444)
+Completed 200 OK in 12ms (Views: 9.8ms | ActiveRecord: 0.6ms | Allocations: 5538)
+
+
+Started GET "/reviews.2" for 127.0.0.1 at 2023-02-14 20:19:06 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 755)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 3136)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.3ms | Allocations: 4229)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 20:19:08 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 85.1ms | Allocations: 3199)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 92.8ms | Allocations: 3614)
+  Rendered layout layouts/application.html.erb (Duration: 100.7ms | Allocations: 6094)
+Completed 200 OK in 109ms (Views: 101.3ms | ActiveRecord: 0.8ms | Allocations: 11503)
+
+
+Started POST "/reviews" for 127.0.0.1 at 2023-02-14 20:19:19 -0500
+Processing by ReviewsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "review"=>{"rating"=>"4", "review"=>"good"}, "commit"=>"Create Review"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.9ms | Allocations: 2027)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 2.3ms | Allocations: 2163)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 4649)
+Completed 422 Unprocessable Entity in 119ms (Views: 8.8ms | ActiveRecord: 0.2ms | Allocations: 14128)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 20:19:28 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 786)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 3167)
+Completed 200 OK in 12ms (Views: 7.6ms | ActiveRecord: 0.4ms | Allocations: 4465)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 20:25:13 -0500
+Processing by ReviewsController#new as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 0.9ms | Allocations: 885)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1013)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 3408)
+Completed 200 OK in 11ms (Views: 7.5ms | ActiveRecord: 0.5ms | Allocations: 5206)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 20:33:36 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 2258)
+  Rendered layout layouts/application.html.erb (Duration: 44.4ms | Allocations: 26046)
+Completed 200 OK in 75ms (Views: 51.9ms | ActiveRecord: 1.1ms | Allocations: 42864)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 20:33:37 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 10.2ms | Allocations: 3317)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 12.9ms | Allocations: 3751)
+  Rendered layout layouts/application.html.erb (Duration: 19.7ms | Allocations: 10090)
+Completed 200 OK in 28ms (Views: 20.4ms | ActiveRecord: 0.8ms | Allocations: 16539)
+
+
+Started GET "/reviews.2" for 127.0.0.1 at 2023-02-14 20:33:38 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 852)
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | Allocations: 5865)
+Completed 200 OK in 12ms (Views: 8.1ms | ActiveRecord: 0.4ms | Allocations: 7312)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:33:40 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 7.3ms | Allocations: 6801)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | Allocations: 9356)
+Completed 200 OK in 23ms (Views: 16.4ms | ActiveRecord: 1.1ms | Allocations: 13068)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:33:40 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 4445)
+Completed 200 OK in 11ms (Views: 9.1ms | ActiveRecord: 0.5ms | Allocations: 5603)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 20:33:41 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | Allocations: 4444)
+Completed 200 OK in 12ms (Views: 9.6ms | ActiveRecord: 0.5ms | Allocations: 5540)
+
+
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 20:33:43 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 755)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 3136)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 0.4ms | Allocations: 4206)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 20:33:48 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.0ms | Allocations: 942)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1074)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 3443)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 4520)
+
+
+Started POST "/reviews" for 127.0.0.1 at 2023-02-14 20:33:54 -0500
+Processing by ReviewsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "review"=>{"rating"=>"3", "review"=>"good"}, "commit"=>"Create Review"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms | Allocations: 1885)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/reviews_controller.rb:25:in `create'
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 20:34:53 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 12.4ms | Allocations: 5744)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 15.5ms | Allocations: 7424)
+  Rendered layout layouts/application.html.erb (Duration: 57.0ms | Allocations: 37049)
+Completed 200 OK in 93ms (Views: 64.9ms | ActiveRecord: 1.9ms | Allocations: 57923)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 20:34:54 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.0ms | Allocations: 990)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1184)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | Allocations: 6879)
+Completed 200 OK in 11ms (Views: 8.4ms | ActiveRecord: 0.2ms | Allocations: 8741)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 20:34:54 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.0ms | Allocations: 884)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1012)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 5605)
+Completed 200 OK in 11ms (Views: 9.0ms | ActiveRecord: 0.2ms | Allocations: 6718)
+
+
+Started POST "/reviews" for 127.0.0.1 at 2023-02-14 20:34:59 -0500
+Processing by ReviewsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "review"=>{"rating"=>"3", "review"=>"good"}, "commit"=>"Create Review"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 404 Not Found in 5ms (ActiveRecord: 0.5ms | Allocations: 3456)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Book without an ID):
+  
+app/controllers/reviews_controller.rb:25:in `create'
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 20:35:05 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.0ms | Allocations: 980)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1110)
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 3586)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 4826)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:00:52 -0500
+Processing by ReviewsController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1151)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 3532)
+Completed 200 OK in 23ms (Views: 10.8ms | ActiveRecord: 1.0ms | Allocations: 5506)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-14 22:02:10 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 3.5ms | Allocations: 2826)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 10694)
+Completed 200 OK in 17ms (Views: 15.0ms | ActiveRecord: 0.2ms | Allocations: 12316)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-14 22:02:10 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1041)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | Allocations: 3453)
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.2ms | Allocations: 3818)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:02:14 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 22.7ms | Allocations: 6798)
+  Rendered layout layouts/application.html.erb (Duration: 28.6ms | Allocations: 9352)
+Completed 200 OK in 37ms (Views: 32.1ms | ActiveRecord: 1.1ms | Allocations: 11338)
+
+
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 22:02:54 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 751)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 3159)
+Completed 200 OK in 11ms (Views: 7.7ms | ActiveRecord: 0.3ms | Allocations: 4528)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 22:03:01 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.2ms | Allocations: 942)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1074)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 3443)
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 0.2ms | Allocations: 4520)
+
+
+Started POST "/reviews" for 127.0.0.1 at 2023-02-14 22:03:08 -0500
+Processing by ReviewsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "review"=>{"rating"=>"3", "review"=>"good"}, "commit"=>"Create Review"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.3ms | Allocations: 1350)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Book without an ID):
+  
+app/controllers/reviews_controller.rb:25:in `create'
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 22:03:29 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 0.9ms | Allocations: 884)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1012)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 3407)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.2ms | Allocations: 4480)
+
+
+Started POST "/reviews" for 127.0.0.1 at 2023-02-14 22:03:32 -0500
+Processing by ReviewsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "review"=>{"rating"=>"3", "review"=>"good"}, "commit"=>"Create Review"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 1616)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Book without an ID):
+  
+app/controllers/reviews_controller.rb:25:in `create'
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 22:03:34 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 0.9ms | Allocations: 884)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1012)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 3381)
+Completed 200 OK in 10ms (Views: 8.1ms | ActiveRecord: 0.4ms | Allocations: 4454)
+
+
+Started POST "/reviews" for 127.0.0.1 at 2023-02-14 22:03:41 -0500
+Processing by ReviewsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "review"=>{"rating"=>"3", "review"=>"good"}, "commit"=>"Create Review"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 1320)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Book without an ID):
+  
+app/controllers/reviews_controller.rb:25:in `create'
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 22:03:59 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.0ms | Allocations: 884)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1012)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 3381)
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.2ms | Allocations: 4480)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:04:01 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 751)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 3132)
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.3ms | Allocations: 4199)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 22:04:03 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.0ms | Allocations: 884)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1012)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 3381)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 4454)
+
+
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 22:04:03 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 751)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 3132)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 0.4ms | Allocations: 4199)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:04:10 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 2061)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 4442)
+Completed 200 OK in 11ms (Views: 8.4ms | ActiveRecord: 0.6ms | Allocations: 5520)
+
+
+Started GET "/books/1" for 127.0.0.1 at 2023-02-14 22:04:23 -0500
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:67:in `set_book'
+  Rendering layout layouts/application.html.erb
+  Rendering books/show.html.erb within layouts/application
+  Rendered books/show.html.erb within layouts/application (Duration: 9.3ms | Allocations: 433)
+  Rendered layout layouts/application.html.erb (Duration: 15.0ms | Allocations: 2814)
+Completed 200 OK in 20ms (Views: 15.6ms | ActiveRecord: 0.4ms | Allocations: 4758)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:04:36 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 4441)
+Completed 200 OK in 12ms (Views: 9.6ms | ActiveRecord: 0.5ms | Allocations: 5518)
+
+
+Started GET "/books/b" for 127.0.0.1 at 2023-02-14 22:05:57 -0500
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"b"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:67:in `set_book'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.4ms | Allocations: 1707)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Book with 'id'=b):
+  
+app/controllers/books_controller.rb:67:in `set_book'
+Started GET "/d" for 127.0.0.1 at 2023-02-14 22:06:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/d"):
+  
+Started GET "/" for 127.0.0.1 at 2023-02-14 22:09:49 -0500
+  [1m[35m (7.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 70.6ms | Allocations: 11809)
+  Rendered layout layouts/application.html.erb (Duration: 200.9ms | Allocations: 45632)
+Completed 200 OK in 272ms (Views: 230.7ms | ActiveRecord: 1.1ms | Allocations: 49805)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:09:52 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 23.5ms | Allocations: 6874)
+  Rendered layout layouts/application.html.erb (Duration: 29.8ms | Allocations: 9429)
+Completed 200 OK in 48ms (Views: 32.8ms | ActiveRecord: 1.7ms | Allocations: 13154)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 22:09:53 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 10.4ms | Allocations: 2102)
+  Rendered layout layouts/application.html.erb (Duration: 10.8ms | Allocations: 2187)
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 0.8ms | Allocations: 6835)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:10:13 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 2160)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 4684)
+Completed 200 OK in 12ms (Views: 9.4ms | ActiveRecord: 0.5ms | Allocations: 5950)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 22:10:28 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1418)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1489)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms | Allocations: 3095)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:10:30 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 10.1ms | Allocations: 4441)
+Completed 200 OK in 13ms (Views: 10.4ms | ActiveRecord: 0.5ms | Allocations: 5517)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 22:23:36 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1407)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 1477)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.7ms | Allocations: 3818)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:24:57 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 2105)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 4512)
+Completed 200 OK in 11ms (Views: 9.0ms | ActiveRecord: 0.5ms | Allocations: 5588)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 22:24:59 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | Allocations: 1476)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms | Allocations: 3057)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:25:00 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 4441)
+Completed 200 OK in 10ms (Views: 8.4ms | ActiveRecord: 0.5ms | Allocations: 5517)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:27:00 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 17.5ms | Allocations: 2824)
+  Rendered layout layouts/application.html.erb (Duration: 23.5ms | Allocations: 5545)
+Completed 200 OK in 33ms (Views: 28.8ms | ActiveRecord: 0.5ms | Allocations: 7524)
+
+
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 22:27:02 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1715)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | Allocations: 1792)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.2ms | Allocations: 3646)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:27:11 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 2152)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 4646)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 0.4ms | Allocations: 5865)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:28:59 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 4470)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 0.5ms | Allocations: 5546)
+
+
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 22:29:00 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1476)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 2522)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 22:29:24 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 2424)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 2929)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 1.0ms | Allocations: 18960)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started POST "/__web_console/repl_sessions/9011646b8667230567d13ecce293cbee/trace" for 127.0.0.1 at 2023-02-14 22:29:33 -0500
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 22:29:36 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1427)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | Allocations: 1499)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms | Allocations: 2754)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 22:29:36 -0500
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1477)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 2538)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews.1" for 127.0.0.1 at 2023-02-14 22:30:08 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReviewsController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 2622)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 2813)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 0.9ms | Allocations: 19243)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:30:10 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.5ms | Allocations: 1424)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | Allocations: 1495)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms | Allocations: 2830)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/" for 127.0.0.1 at 2023-02-14 22:30:14 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1707)
+  Rendered layout layouts/application.html.erb (Duration: 33.3ms | Allocations: 12057)
+Completed 200 OK in 40ms (Views: 37.5ms | ActiveRecord: 0.2ms | Allocations: 13207)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:30:16 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 22.0ms | Allocations: 6816)
+  Rendered layout layouts/application.html.erb (Duration: 27.8ms | Allocations: 9371)
+Completed 200 OK in 38ms (Views: 31.2ms | ActiveRecord: 1.4ms | Allocations: 13071)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:30:18 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.5ms | Allocations: 1430)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | Allocations: 1501)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 2730)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:30:20 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 2104)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 7062)
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.4ms | Allocations: 8377)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:30:24 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1476)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 2518)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:33:22 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 1477)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms | Allocations: 2566)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:33:25 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1476)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 2518)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:33:25 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | Allocations: 1476)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms | Allocations: 2518)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:33:49 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 2392)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 2877)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 0.9ms | Allocations: 18863)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:33:51 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 8.9ms | Allocations: 6927)
+  Rendered layout layouts/application.html.erb (Duration: 37.5ms | Allocations: 14972)
+Completed 200 OK in 48ms (Views: 40.8ms | ActiveRecord: 1.3ms | Allocations: 18708)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:33:52 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1430)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | Allocations: 1501)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms | Allocations: 2730)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:34:42 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | Allocations: 1477)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms | Allocations: 2540)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:34:43 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1709)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms | Allocations: 3566)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:35:27 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1477)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 2536)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:35:28 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | Allocations: 1477)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms | Allocations: 2536)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:36:36 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1476)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms | Allocations: 2518)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:36:37 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 1406)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 1476)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.4ms | Allocations: 2518)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews/1" for 127.0.0.1 at 2023-02-14 22:38:11 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:69:in `set_review'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/show.html.erb within layouts/application
+  Rendered reviews/show.html.erb within layouts/application (Duration: 7.1ms | Allocations: 355)
+  Rendered layout layouts/application.html.erb (Duration: 13.0ms | Allocations: 2903)
+Completed 200 OK in 22ms (Views: 13.5ms | ActiveRecord: 1.0ms | Allocations: 9127)
+
+
+Started GET "/reviews/1" for 127.0.0.1 at 2023-02-14 22:39:05 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:69:in `set_review'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/show.html.erb within layouts/application
+  Rendered reviews/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 227)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 2791)
+Completed 200 OK in 27ms (Views: 7.7ms | ActiveRecord: 2.2ms | Allocations: 18526)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:39:08 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 1420)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1490)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 2676)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews/1" for 127.0.0.1 at 2023-02-14 22:39:24 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:69:in `set_review'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/show.html.erb within layouts/application
+  Rendered reviews/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 131)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | Allocations: 2512)
+Completed 200 OK in 9ms (Views: 6.3ms | ActiveRecord: 0.3ms | Allocations: 4137)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-14 22:39:30 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1582)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 4145)
+Completed 200 OK in 16ms (Views: 13.8ms | ActiveRecord: 0.2ms | Allocations: 5254)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-14 22:41:37 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1043)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 3450)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.2ms | Allocations: 3815)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 22:41:39 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 7.7ms | Allocations: 6098)
+  Rendered layout layouts/application.html.erb (Duration: 13.7ms | Allocations: 8647)
+Completed 200 OK in 18ms (Views: 13.5ms | ActiveRecord: 1.3ms | Allocations: 11886)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:41:40 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 1419)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1489)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 2617)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:42:39 -0500
+Processing by ReviewsController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1411)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | Allocations: 1487)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 1.4ms | Allocations: 12243)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews/2" for 127.0.0.1 at 2023-02-14 22:42:44 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:70:in `set_review'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/show.html.erb within layouts/application
+  Rendered reviews/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 185)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 2733)
+Completed 200 OK in 14ms (Views: 7.4ms | ActiveRecord: 0.9ms | Allocations: 8817)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:50:56 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 2480)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 2665)
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 0.9ms | Allocations: 18864)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 22:54:34 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 1424)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | Allocations: 1495)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms | Allocations: 2711)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:08:50 -0500
+Processing by ReviewsController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 7.2ms | Allocations: 5661)
+  Rendered layout layouts/application.html.erb (Duration: 43.6ms | Allocations: 13304)
+Completed 200 OK in 63ms (Views: 43.9ms | ActiveRecord: 1.6ms | Allocations: 23574)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:09:50 -0500
+Processing by ReviewsController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 5.6ms | Allocations: 5425)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | Allocations: 7984)
+Completed 200 OK in 25ms (Views: 11.7ms | ActiveRecord: 2.0ms | Allocations: 18821)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:09:51 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1053)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 3434)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.3ms | Allocations: 4596)
+
+
+Started GET "/reviews/2" for 127.0.0.1 at 2023-02-14 23:10:20 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:69:in `set_review'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/show.html.erb within layouts/application
+  Rendered reviews/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 325)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 2732)
+Completed 200 OK in 12ms (Views: 6.7ms | ActiveRecord: 0.4ms | Allocations: 4724)
+
+
+Started GET "/reviews/1" for 127.0.0.1 at 2023-02-14 23:10:23 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:69:in `set_review'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/show.html.erb within layouts/application
+  Rendered reviews/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 131)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 4976)
+Completed 200 OK in 10ms (Views: 7.1ms | ActiveRecord: 0.3ms | Allocations: 6828)
+
+
+Started GET "/reviews/2" for 127.0.0.1 at 2023-02-14 23:10:25 -0500
+Processing by ReviewsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:69:in `set_review'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/show.html.erb within layouts/application
+  Rendered reviews/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 131)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | Allocations: 2512)
+Completed 200 OK in 9ms (Views: 6.1ms | ActiveRecord: 0.3ms | Allocations: 4135)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:10:26 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1053)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 3429)
+Completed 200 OK in 9ms (Views: 7.1ms | ActiveRecord: 0.3ms | Allocations: 4505)
+
+
+Started GET "/r" for 127.0.0.1 at 2023-02-14 23:10:47 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/r"):
+  
+Started GET "/" for 127.0.0.1 at 2023-02-14 23:15:09 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1621)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 4183)
+Completed 200 OK in 15ms (Views: 12.9ms | ActiveRecord: 0.2ms | Allocations: 5292)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:15:10 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 7.5ms | Allocations: 6753)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | Allocations: 9307)
+Completed 200 OK in 23ms (Views: 16.5ms | ActiveRecord: 1.1ms | Allocations: 12984)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:15:12 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1055)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 3436)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.4ms | Allocations: 4615)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 23:15:15 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 70.9ms | Allocations: 2986)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 79.7ms | Allocations: 3378)
+  Rendered layout layouts/application.html.erb (Duration: 85.4ms | Allocations: 5862)
+Completed 200 OK in 90ms (Views: 86.0ms | ActiveRecord: 0.2ms | Allocations: 7136)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:15:16 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1103)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 3485)
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.3ms | Allocations: 4710)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 23:15:19 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.0ms | Allocations: 900)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1032)
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 3401)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 4477)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:15:20 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1602)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | Allocations: 7278)
+Completed 200 OK in 11ms (Views: 8.4ms | ActiveRecord: 0.3ms | Allocations: 8955)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 23:16:27 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 3341)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 3932)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.4ms | Allocations: 6432)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Review id: 1, review_id: "1", rating: 3, review: "gfff", created_at: nil, updated_at: nil, references: "ewtr", book_id: 1, user_id: 1>):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:16:44 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1053)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 3434)
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.3ms | Allocations: 4512)
+
+
+Started GET "/reviews/new" for 127.0.0.1 at 2023-02-14 23:21:06 -0500
+Processing by ReviewsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/new.html.erb within layouts/application
+  Rendered reviews/_form.html.erb (Duration: 1.6ms | Allocations: 1377)
+  Rendered reviews/new.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1789)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | Allocations: 4488)
+Completed 200 OK in 19ms (Views: 15.2ms | ActiveRecord: 0.2ms | Allocations: 6430)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:21:07 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 10.1ms | Allocations: 1360)
+  Rendered layout layouts/application.html.erb (Duration: 40.1ms | Allocations: 3816)
+Completed 200 OK in 58ms (Views: 45.0ms | ActiveRecord: 0.4ms | Allocations: 5319)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:21:09 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1053)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 3434)
+Completed 200 OK in 10ms (Views: 7.3ms | ActiveRecord: 0.4ms | Allocations: 4510)
+
+
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:21:09 -0500
+Processing by ReviewsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1053)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 3429)
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.4ms | Allocations: 4505)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:21:15 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 2824)
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | Allocations: 5382)
+Completed 200 OK in 19ms (Views: 14.7ms | ActiveRecord: 0.6ms | Allocations: 7083)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 23:21:17 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 3213)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 3283)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.3ms | Allocations: 4947)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Review id: 1, review_id: "1", rating: 3, review: "gfff", created_at: nil, updated_at: nil, references: "ewtr", book_id: 1, user_id: 1>):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:21:21 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 6667)
+Completed 200 OK in 12ms (Views: 9.5ms | ActiveRecord: 0.4ms | Allocations: 7771)
+
+
+Started GET "/reviews?book_id=2" for 127.0.0.1 at 2023-02-14 23:21:25 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 3193)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 3263)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.3ms | Allocations: 4841)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Review id: 2, review_id: "dxvf", rating: 4, review: "dfgv", created_at: nil, updated_at: nil, references: "edf", book_id: 1, user_id: 2>):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:21:27 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 4441)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 0.5ms | Allocations: 5517)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 23:21:29 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 3194)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 3264)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.3ms | Allocations: 4842)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Review id: 1, review_id: "1", rating: 3, review: "gfff", created_at: nil, updated_at: nil, references: "ewtr", book_id: 1, user_id: 1>):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/reviews" for 127.0.0.1 at 2023-02-14 23:23:08 -0500
+Processing by ReviewsController#index as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ app/views/reviews/index.html.erb:15
+  Rendered reviews/index.html.erb within layouts/application (Duration: 5.3ms | Allocations: 5425)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | Allocations: 7983)
+Completed 200 OK in 24ms (Views: 11.0ms | ActiveRecord: 1.9ms | Allocations: 18789)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:23:12 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 6.9ms | Allocations: 6150)
+  Rendered layout layouts/application.html.erb (Duration: 12.6ms | Allocations: 8704)
+Completed 200 OK in 19ms (Views: 12.5ms | ActiveRecord: 1.1ms | Allocations: 11947)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:23:13 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 4436)
+Completed 200 OK in 11ms (Views: 8.6ms | ActiveRecord: 0.5ms | Allocations: 5591)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:23:14 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 4436)
+Completed 200 OK in 11ms (Views: 9.1ms | ActiveRecord: 0.5ms | Allocations: 5510)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 23:23:15 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 3257)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | Allocations: 3327)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.4ms | Allocations: 5206)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Review id: 1, review_id: "1", rating: 3, review: "gfff", created_at: nil, updated_at: nil, references: "ewtr", book_id: 1, user_id: 1>):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:23:23 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 4441)
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 0.5ms | Allocations: 6042)
+
+
+Started GET "/reviews?book_id=2" for 127.0.0.1 at 2023-02-14 23:23:24 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."book_id" = ? LIMIT ?[0m  [["book_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1407)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 1477)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms | Allocations: 3058)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:23:26 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2060)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 4441)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.5ms | Allocations: 5517)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 23:23:28 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 3193)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | Allocations: 3263)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.4ms | Allocations: 4853)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Review id: 1, review_id: "1", rating: 3, review: "gfff", created_at: nil, updated_at: nil, references: "ewtr", book_id: 1, user_id: 1>):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:25:02 -0500
+Processing by BooksController#index as HTML
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 6090)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 8644)
+Completed 200 OK in 25ms (Views: 11.8ms | ActiveRecord: 2.1ms | Allocations: 20279)
+
+
+Started GET "/reviews?book_id=1" for 127.0.0.1 at 2023-02-14 23:25:06 -0500
+Processing by ReviewsController#index as HTML
+  Parameters: {"book_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."book_id" = ? LIMIT ?[0m  [["book_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering reviews/index.html.erb within layouts/application
+  Rendered reviews/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 3298)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | Allocations: 3374)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.0ms | Allocations: 10775)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Review id: 1, review_id: "1", rating: 3, review: "gfff", created_at: nil, updated_at: nil, references: "ewtr", book_id: 1, user_id: 1>):
+    12:   </thead>
+    13: 
+    14:   <tbody>
+    15:     <% @reviews.each do |review| %>
+    16:       <tr>
+    17:         <td><%= review.rating %></td>
+    18:         <td><%= review.review %></td>
+  
+app/views/reviews/index.html.erb:15
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:26:37 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 2151)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 4671)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.5ms | Allocations: 5892)
+
+
+Started GET "/" for 127.0.0.1 at 2023-02-14 23:26:38 -0500
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1567)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | Allocations: 4124)
+Completed 200 OK in 14ms (Views: 12.0ms | ActiveRecord: 0.2ms | Allocations: 5232)
+
+
+Started GET "/books" for 127.0.0.1 at 2023-02-14 23:26:40 -0500
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "books"."author" FROM "books"[0m
+  ↳ app/views/books/index.html.erb:6
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:23
+  Rendered books/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 2123)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 4504)
+Completed 200 OK in 10ms (Views: 8.4ms | ActiveRecord: 0.5ms | Allocations: 5602)
+
+
