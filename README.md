@@ -52,25 +52,6 @@ Password: admin
 |`DELETE`|[http://152.7.177.32:3000/books/5](http://152.7.177.32:3000/reviews)| Delete reviews by clicking on the delete link |
 |![image](https://media.github.ncsu.edu/user/26500/files/14e9665a-f0b1-4192-b19c-6a374ef6d14f)|||
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
 ## Team Members
