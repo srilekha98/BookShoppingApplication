@@ -52,6 +52,10 @@ Password: admin
 |`DELETE`|[http://152.7.177.32:3000/books/5](http://152.7.177.32:3000/reviews)| Delete reviews by clicking on the delete link |
 |![image](https://media.github.ncsu.edu/user/26500/files/14e9665a-f0b1-4192-b19c-6a374ef6d14f)|||
 
+## Class Diagram
+
+<img src="https://media.github.ncsu.edu/user/26315/files/7aaae76f-1839-4dd3-ab8b-a792daf4b4a8" width="900" height="800">
+
 
 
 ## Team Members
