@@ -6,7 +6,7 @@ class BooksController < ApplicationController
     @books = if params[:author].present?
                Book.by_author(params[:author])
              elsif params[:rating].present?
-               Book.where(':average_rating >= ?', params[:rating].to_f)
+               Book.where('average_rating >= ?', params[:rating].to_f)
              else
                Book.all
              end
