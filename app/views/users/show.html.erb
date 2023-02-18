@@ -31,7 +31,7 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> |
+<%= link_to 'Back', root_url %> |
 <%if current_user %>
   <td><%= link_to 'Delete', delete_user_path(@user.id), method: :delete, data: { confirm: 'Are you sure?' }%></td>
 <%else %>
