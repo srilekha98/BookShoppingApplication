@@ -10,5 +10,13 @@
   <%= @review.review %>
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %> |
+<% if current_user == @review.user %>
+  <%= link_to 'Edit', edit_review_path(@review) %>
+  <%= link_to 'Back', reviews_path %>
+<% elsif admin_user %>
+  <%= link_to 'Edit', edit_review_path(@review) %>
 <%= link_to 'Back', reviews_path %>
+  <% link_to 'Delete', delete_review_path(@review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% else %>
+  <%= link_to 'Back', reviews_path %>
+<% end %>
