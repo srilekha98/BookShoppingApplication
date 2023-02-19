@@ -28,7 +28,13 @@ class TransactionsController < ApplicationController
       @book = Book.find(params[:book_id])
     end
     if current_user.cc_num != nil
-      @credit_cards = current_user.cc_num
+      @credit_card = current_user.cc_num
+    end
+    if current_user.address != nil
+      @address = current_user.address
+    end
+    if current_user.phone_num != nil
+      @phone_number = current_user.phone_num
     end
   end
 

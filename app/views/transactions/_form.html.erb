@@ -30,29 +30,17 @@
 
   <div class="field">
     <%= form.label :credit_card_number, "Credit card number" %>
-    <% if current_user.cc_num.nil? %>
-      <%= form.text_field :credit_card_number, :id => 'credit_card_number', value: current_user.cc_num %>
-    <% else %>
-      <%= form.text_field :credit_card_number, :id => 'credit_card_number'%>
-    <% end %>
+      <%= form.text_field :credit_card_number, :id => 'credit_card_number',value: @credit_card %>
   </div>
 
   <div class="field">
     <%= form.label :address, "Address" %>
-    <% if current_user.address.nil? %>
       <%= form.text_field :address, :id => 'address', value: current_user.address %>
-    <% else %>
-      <%= form.text_field :address, :id => 'address'%>
-    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :phone_number, "Phone number" %>
-    <% if current_user.phone_num.nil? %>
       <%= form.text_field :phone_number, :id => 'phone_number', value: current_user.phone_num %>
-    <% else %>
-      <%= form.text_field :phone_number, :id => 'phone_number'%>
-    <% end %>
   </div>
 
   <div class="actions">
