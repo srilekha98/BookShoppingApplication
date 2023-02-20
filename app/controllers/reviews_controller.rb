@@ -35,9 +35,14 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @book = Book.find(params[:review]["book_id"])
-    @review.user_id = current_user.id
-    @review.book_id = @book.id
-    respond_to do |format|
+    if current_user
+      @review.user_id = current_user.id
+      @review.book_id = @book.id
+    elsif admin_user
+        @review.user_id = admin_user.id
+        @review.book_id = @book.id
+    end
+     respond_to do |format|
       if @review.save
         @book.average_rating = @book.average_rating + @review.rating
         @book.average_rating = @book.average_rating / Review.where(book_id: @book.id).count
