@@ -36,7 +36,7 @@
         <td><%= book.stock %></td>
         <td><%= book.average_rating %></td>
         <td><%= link_to 'Reviews', reviews_path(:book_id => book.id) %></td>
-        <% if book.stock !=0 and current_user%>
+        <% if book.stock > 0 and current_user%>
             <td><%= link_to 'Buy this Book', new_transaction_path(:book_id => book.id) %></td>
             <td><%= link_to 'Add a Review', new_review_path(:book_id => book.id) %></td>
         <%end %>

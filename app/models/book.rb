@@ -6,7 +6,7 @@ class Book < ApplicationRecord
   validates :author, presence: true
   validates :publisher, presence: true
   validates :price, presence: true, numericality: {greater_than: 0}
-  validates :stock, presence: true, numericality: {greater_than: 0, only_integer: true}
+  validates :stock, presence: true, numericality: {greater_than: -1, only_integer: true}
 
   def self.by_author(author)
     where(author: author)

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <% if current_user %>
-  Logged in as <%= current_user.name %>
+  Logged in as <%= current_user.username %>
   <nav>
     <ul>
       <li><%= link_to "My Profile", user_path(current_user.id) %> </li>
