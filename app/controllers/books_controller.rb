@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
+  # all actions except for :create, :update, :destroy
+  skip_before_action :verify_authenticity_token
 
   # GET /books or /books.json
   def index

@@ -1,10 +1,10 @@
 class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %i[ show edit update destroy ]
-
+  skip_before_action :verify_authenticity_token, :only => :create
   # GET /order_items or /order_items.json
   def index
     # @order_items = OrderItem.all
-    @order_items = current_order.order_items.new
+    @order_items = OrderItem.all
   end
 
   # GET /order_items/1 or /order_items/1.json
@@ -23,11 +23,19 @@ class OrderItemsController < ApplicationController
   # POST /order_items or /order_items.json
   def create
     @order = current_order
-    @order_item = @order.order_items.new(order_params)
-    @order.save
-    session[:order_id] = @order.id
-    # @order_item = OrderItem.new(order_item_params)
+    if session[:order_id].nil?
+      @order.user_id = current_user.id
+      @order.save
+      session[:order_id] = @order.id
+    end
 
+    @order_item = @order.order_items.new(order_params)
+
+    @order_item.user_id = current_user.id
+    # @order_item.book_id =
+
+    # @order_item = OrderItem.new(order_item_params)
+    # @order_item.order_id = @order.id
     respond_to do |format|
 
       if @order_item.save
@@ -75,7 +83,7 @@ class OrderItemsController < ApplicationController
     end
 
     def order_params
-      params.require(:order_item).permit(:product_id, :quantity)
+      params.require(:order_item).permit(:book_id, :quantity)
     end
 
 end
