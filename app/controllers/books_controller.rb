@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
+    @order_item = current_order.order_items.new
     @books = if params[:author].present?
                Book.by_author(params[:author])
              elsif params[:rating].present?

@@ -3,7 +3,8 @@ class OrderItemsController < ApplicationController
 
   # GET /order_items or /order_items.json
   def index
-    @order_items = OrderItem.all
+    # @order_items = OrderItem.all
+    @order_items = current_order.order_items.new
   end
 
   # GET /order_items/1 or /order_items/1.json
@@ -21,9 +22,14 @@ class OrderItemsController < ApplicationController
 
   # POST /order_items or /order_items.json
   def create
-    @order_item = OrderItem.new(order_item_params)
+    @order = current_order
+    @order_item = @order.order_items.new(order_params)
+    @order.save
+    session[:order_id] = @order.id
+    # @order_item = OrderItem.new(order_item_params)
 
     respond_to do |format|
+
       if @order_item.save
         format.html { redirect_to order_item_url(@order_item), notice: "Order item was successfully created." }
         format.json { render :show, status: :created, location: @order_item }
@@ -67,4 +73,9 @@ class OrderItemsController < ApplicationController
     def order_item_params
       params.require(:order_item).permit(:order_id, :book_id, :quantity, :total, :unit_price, :user_id)
     end
+
+    def order_params
+      params.require(:order_item).permit(:product_id, :quantity)
+    end
+
 end

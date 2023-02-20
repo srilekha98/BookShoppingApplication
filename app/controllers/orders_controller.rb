@@ -57,6 +57,8 @@ class OrdersController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -67,4 +69,5 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:subtotal, :total)
     end
+
 end
