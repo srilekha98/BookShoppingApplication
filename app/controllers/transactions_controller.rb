@@ -44,7 +44,7 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = Transaction.new(transaction_params).lock!("FOR UPDATE NOWAIT")
     @transaction.transaction_number = Array.new(10){[*"A".."Z", *"0".."9"].sample}.join
     @book = Book.find(params[:transaction]["book_id"])
     @transaction.user_id = current_user.id

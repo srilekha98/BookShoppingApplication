@@ -72,6 +72,15 @@ class ReviewsController < ApplicationController
 
   # DELETE /reviews/1 or /reviews/1.json
   def destroy
+    @book = Book.find(@review.book_id)
+    @ct = Review.where(book_id: @book.id).count
+    if @ct != 1
+        @book.average_rating = (@book.average_rating* @ct- @review.rating)/(@ct - 1)
+        @book.average_rating = @book.average_rating.round(2)
+        @book.save!
+    else
+        @book.average_rating = 0
+    end
     @review.destroy
 
     respond_to do |format|
