@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :reviews, dependent: :destroy
-  has_many :transactions
+  has_many :reviews, dependent: :delete_all
+  has_many :transactions, dependent: :delete_all
   has_many :books
   has_many :orders
   has_many :order_items

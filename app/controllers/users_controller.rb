@@ -9,7 +9,11 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    @user = current_user
+    if current_user
+      @user = current_user
+    elsif admin_user
+      @user = User.find(params[:id])
+      end
   end
 
   # GET /users/new
@@ -52,9 +56,11 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy
-    reset_session
+    if !admin_user
+      reset_session
+    end
     respond_to do |format|
-      format.html { redirect_to root_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to users_path, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
   end

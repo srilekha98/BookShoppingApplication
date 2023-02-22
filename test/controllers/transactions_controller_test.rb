@@ -17,7 +17,7 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create transaction" do
     assert_difference('Transaction.count') do
-      post transactions_url, params: { transaction: { address: @transaction.address, credit_card_number: @transaction.credit_card_number, phone_number: @transaction.phone_number, quantity: @transaction.quantity, total_price: @transaction.total_price, transaction_number: @transaction.transaction_number } }
+      post transactions_url, params: { transaction: { book_id: 3, user_id:2, address: @transaction.address, credit_card_number: @transaction.credit_card_number, phone_number: @transaction.phone_number, quantity: @transaction.quantity, total_price: @transaction.total_price, transaction_number: @transaction.transaction_number } }
     end
 
     assert_redirected_to transaction_url(Transaction.last)

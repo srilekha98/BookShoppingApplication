@@ -35,9 +35,14 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @book = Book.find(params[:review]["book_id"])
-    @review.user_id = current_user.id
-    @review.book_id = @book.id
-    respond_to do |format|
+    if current_user
+      @review.user_id = current_user.id
+      @review.book_id = @book.id
+    elsif admin_user
+        @review.user_id = admin_user.id
+        @review.book_id = @book.id
+    end
+     respond_to do |format|
       if @review.save
         @book.average_rating = @book.average_rating + @review.rating
         @book.average_rating = @book.average_rating / Review.where(book_id: @book.id).count
@@ -67,6 +72,15 @@ class ReviewsController < ApplicationController
 
   # DELETE /reviews/1 or /reviews/1.json
   def destroy
+    @book = Book.find(@review.book_id)
+    @ct = Review.where(book_id: @book.id).count
+    if @ct != 1
+        @book.average_rating = (@book.average_rating* @ct- @review.rating)/(@ct - 1)
+        @book.average_rating = @book.average_rating.round(2)
+        @book.save!
+    else
+        @book.average_rating = 0
+    end
     @review.destroy
 
     respond_to do |format|
@@ -83,6 +97,6 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:rating, :review)
+      params.require(:review).permit(:rating, :review, :book_id)
     end
 end
