@@ -1,23 +1,25 @@
 # Book Shopping Application
 
-Extra credit:
-Form pre-filling: Done
-Take care of race conditions: Done
+### Extra credit:
+Form pre-filling: Done 
+
+Take care of race conditions: Done 
+
 Implement a cart-like function: Done
 
 Testing: added tests for book 
 
-### Home Page
+## Home Page
 
 |HTTP Method|URL|Description|
 |---|---|---|
 |`GET`|http://152.7.177.32:3000/ | Home page |
 
-### Credentials for the preconfigured admin
+## Credentials for the preconfigured admin
 Username: admin  
 Password: admin
 
-#### Books
+### Books
 
 |HTTP Method|URL|Description|
 |---|---|---|
@@ -31,7 +33,7 @@ Password: admin
 ![image](https://media.github.ncsu.edu/user/26500/files/c3b7e730-8512-44c4-818d-80f6bf870a99)
 
 
-#### Reviews
+### Reviews
 
 |HTTP Method|URL|Description|
 |---|---|---|
@@ -42,7 +44,7 @@ Password: admin
 |`GET`|http://152.7.177.32:3000/reviews/1/edit| Edit your review |
 |![image](https://media.github.ncsu.edu/user/26500/files/971c7abe-8dd7-4645-9f63-2ebcdaee8658)|||
 
-#### Admin
+### Admin
 
 |HTTP Method|URL|Description|
 |---|---|---|
