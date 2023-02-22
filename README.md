@@ -1,6 +1,11 @@
 # Book Shopping Application
 
+Extra credit:
+Form pre-filling: Done
+Take care of race conditions: Done
+Implement a cart-like function: Done
 
+Testing: added tests for book 
 
 ### Home Page
 
