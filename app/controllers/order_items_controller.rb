@@ -4,7 +4,8 @@ class OrderItemsController < ApplicationController
   # GET /order_items or /order_items.json
   def index
     # @order_items = OrderItem.all
-    @order_items = OrderItem.all
+    @order_items = OrderItem.all.where(user_id:current_user.id)
+
   end
 
   # GET /order_items/1 or /order_items/1.json
@@ -32,10 +33,6 @@ class OrderItemsController < ApplicationController
     @order_item = @order.order_items.new(order_params)
 
     @order_item.user_id = current_user.id
-    # @order_item.book_id =
-
-    # @order_item = OrderItem.new(order_item_params)
-    # @order_item.order_id = @order.id
     respond_to do |format|
 
       if @order_item.save
@@ -70,6 +67,52 @@ class OrderItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def checkout
+
+    if current_user.cc_num != nil and current_user.phone_num != nil
+      @order_items = OrderItem.all.where(user_id:current_user.id)
+      @total_amount = 0
+      @order_items.each do |item|
+        @book = Book.find_by(id: item.book_id)
+          if @book.stock < item.quantity
+            redirect_to order_items_url, notice: "The stock for book with id: #{@book.id} is not sufficient"
+          else
+            @book.stock = @book.stock - item.quantity
+            @book.save
+          @price =  item.unit_price * item.quantity
+          @total_amount += @price
+          end
+        end
+    else
+      redirect_to order_items_url, notice: "Credit Card Number or Phone Number not present for the user"
+    end
+  end
+
+  def place_order
+    @transactions = Array.new
+    @transaction_label = Array.new(10){[*"A".."Z", *"0".."9"].sample}.join
+    @user = current_user
+    @order_items = OrderItem.all.where(user_id:current_user.id)
+    @order_items.each do |item|
+      @book = Book.find_by(id: item.book_id)
+        @transaction = Transaction.new
+        @transaction.transaction_number = @transaction_label
+        @transaction.user_id = current_user.id
+        @transaction.phone_number = @user.phone_num
+        @transaction.address = @user.address
+        @transaction.book_id = @book.id
+        @transaction.credit_card_number = @user.cc_num
+        @transaction.quantity = item.quantity
+        @transaction.total_price = @book.price * item.quantity
+
+        if @transaction.save
+          @transactions.append(@transaction)
+          item.destroy
+        end
+    end
+    flash[:alert] = "Order has been placed successfully"
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.

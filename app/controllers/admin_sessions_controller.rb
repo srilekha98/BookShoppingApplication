@@ -9,7 +9,7 @@ class AdminSessionsController < ApplicationController
     admin = Admin.find_by_username(params[:username])
     if admin && admin.authenticate(params[:password])
       session[:admin_id] = admin.id
-      redirect_to root_url, notice: "Logged in as an Admin!"
+      redirect_to root_urlç
     else
       flash.now[:alert] = "Email or password is invalid"
       render "new"

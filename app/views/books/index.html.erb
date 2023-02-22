@@ -36,7 +36,6 @@
         <td><%= book.average_rating %></td>
         <td><%= link_to 'Reviews', reviews_path(:book_id => book.id) %></td>
         <% if book.stock !=0 and current_user%>
-            <td><%= link_to 'Buy Book', new_transaction_path(:book_id => book.id) %></td>
           <td>
             <%= form_for @order_item, remote: true do |f|%>
               <%= f.hidden_field :book_id, :value => book.id %>
@@ -62,4 +61,3 @@
 <% if admin_user %>
   <%= link_to 'New Book', new_book_path %>
 <% end %>
-<%= link_to 'Cart', order_items_path %>

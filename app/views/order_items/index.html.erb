@@ -14,7 +14,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @order_items.each do |order_item| %>
       <tr>
@@ -26,20 +25,12 @@
         <td><%= order_item.user_id %></td>
         <td><%= link_to 'Show', order_item %></td>
         <td><%= link_to 'Edit', edit_order_item_path(order_item) %></td>
-        <td><%= link_to 'Destroy', order_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <%= form_for order_item, remote: true do |f| %>
-          <%= f.hidden_field :book_id, :value => order_item.book.id %>
-          <%= f.number_field :quantity, :value => order_item.quantity.to_i %>
-          <%= f.submit "Update Card "%>
-          <%= link_to "Remove Items", order_item_path(order_item), method: :delete, remote: true%>
-        <% end %>
-        <h2>Subtotal: <%= order_item.total %></h2>
-
+        <td><%= link_to 'Remove item from Cart', delete_cart_item_path(order_item), data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
-<h3>Your current card value has a subtotal of: <%= current_order.subtotal %> </h3>
-<%#= link_to 'New Order Item', new_order_item_path %>
+<%= link_to 'Checkout Cart', checkout_path %>
+<br>
+<h3>Your current cart value is: <%= current_order.subtotal %> </h3>
