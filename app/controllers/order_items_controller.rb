@@ -76,6 +76,7 @@ class OrderItemsController < ApplicationController
       @order_items.each do |item|
         @book = Book.find_by(id: item.book_id)
           if @book.stock < item.quantity
+            item.destroy
             redirect_to order_items_url, notice: "The stock for book with id: #{@book.id} is not sufficient"
           else
             @book.stock = @book.stock - item.quantity
