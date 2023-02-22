@@ -1,8 +1,11 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
+  # all actions except for :create, :update, :destroy
+  skip_before_action :verify_authenticity_token
 
   # GET /books or /books.json
   def index
+    @order_item = current_order.order_items.new
     @books = if params[:author].present?
                Book.by_author(params[:author])
              elsif params[:rating].present?

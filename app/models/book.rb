@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
   has_many :transactions, dependent: :delete_all
   has_many :reviews, dependent: :delete_all
-
+  has_many :order_items, dependent: :delete_all
   validates :name, presence: true
   validates :author, presence: true
   validates :publisher, presence: true

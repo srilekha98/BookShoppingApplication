@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Books
-</h2>
+<h2>Books</h2>
 <%= form_tag books_path, method: :get do %>
   <%= label_tag :filter_by_author%>
   <%= select_tag :author, options_for_select(Book.pluck(:author).uniq), include_blank: true %>
@@ -36,9 +35,15 @@
         <td><%= book.stock %></td>
         <td><%= book.average_rating %></td>
         <td><%= link_to 'Reviews', reviews_path(:book_id => book.id) %></td>
-        <% if book.stock > 0 and current_user%>
-            <td><%= link_to 'Buy this Book', new_transaction_path(:book_id => book.id) %></td>
-            <td><%= link_to 'Add a Review', new_review_path(:book_id => book.id) %></td>
+        <% if book.stock !=0 and current_user%>
+          <td>
+            <%= form_for @order_item, remote: true do |f|%>
+              <%= f.hidden_field :book_id, :value => book.id %>
+              <%= f.number_field :quantity, :value => 1, :min =>  1%>
+              <%= f.submit "Add to Cart"%>
+            <% end %>
+          </td>
+            <td><%= link_to 'Give Review', new_review_path(:book_id => book.id) %></td>
         <%end %>
         <%if admin_user %>
           <td><%= link_to 'Edit this Book', edit_book_path(book) %></td>

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<h2>Order Details</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>User ID</th>
+    <th>Transaction number</th>
+    <th>Quantity</th>
+    <th>Total price</th>
+    <th colspan="5"></th>
+  </tr>
+  </thead>
+
+  <% if admin_user %>
+    <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.user_id %></td>
+        <td><%= transaction.transaction_number %></td>
+        <td><%= transaction.quantity %></td>
+        <td><%= transaction.total_price %></td>
+      </tr>
+    <% end %>
+    </tbody>
+    </table>
+
+    <br>
+
+  <% else %>
+
+    <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <% if current_user.id == transaction.user_id %>
+          <td><%= transaction.user_id %></td>
+          <td><%= transaction.transaction_number %></td>
+          <td><%= transaction.quantity %></td>
+          <td><%= transaction.total_price %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+
+  <% end %>

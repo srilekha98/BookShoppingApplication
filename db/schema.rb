@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_15_183101) do
+ActiveRecord::Schema.define(version: 2023_02_19_235848) do
 
   create_table "admins", force: :cascade do |t|
     t.string "username"
@@ -30,6 +30,29 @@ ActiveRecord::Schema.define(version: 2023_02_15_183101) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "average_rating"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "book_id", null: false
+    t.integer "quantity"
+    t.decimal "total"
+    t.decimal "unit_price"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_order_items_on_book_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["user_id"], name: "index_order_items_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.decimal "subtotal"
+    t.decimal "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -75,6 +98,10 @@ ActiveRecord::Schema.define(version: 2023_02_15_183101) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "order_items", "books"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
   add_foreign_key "transactions", "books"
